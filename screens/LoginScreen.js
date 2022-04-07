@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button} from 'react-native';
-
+import LoginInput from "../components/LoginInput";
 import LogoElo from '../assets/LogoElo.png'
 
 const styles = StyleSheet.create({
@@ -34,13 +34,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems:'center',
     },
-    LoginScreenInputContainer: {
-        paddingTop: 20, 
-        borderBottomWidth: 1
-    },
-    LoginScreenInputStyle: {
-
-    }
   });
 
 function LoginScreen({ navigation }) {
@@ -56,16 +49,11 @@ function LoginScreen({ navigation }) {
                 <Text style={styles.title}>Gerenciamento de Leads</Text>
                 <View style={styles.LoginContainer}>
                     <Text style={{ fontSize: 20 }}>Login</Text>
-                    <View style={{ paddingTop: 20, borderBottomWidth: 1 }}>
-                        <TextInput placeholder="Usuário" style={{ textAlign: 'center', outlineStyle:'none'}} />
-                    </View>
-                    <View style={{ paddingTop: 20, borderBottomWidth: 1 }}>
-                        <TextInput secureTextEntry placeholder="Senha" style={{ textAlign: 'center', outlineStyle:'none' }} />
-                    </View>
+                    <LoginInput placeholder='Usuário'/>
+                    <LoginInput placeholder='Senha' secure={true} />
                     <View style={{ paddingTop: 30 }}>
                         <Button title="Login" color='#171717' />
                     </View>
-
                 </View>
                 <View style={{ position:'absolute', bottom:50 }}>
                     <Button onPress={() => navigation.navigate('Sign Up')} title="Cadastro" color='#f9b233' />

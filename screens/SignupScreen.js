@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button} from 'react-native';
-
+import LoginInput from "../components/LoginInput";
 import LogoElo from '../assets/LogoElo.png'
 
 const styles = StyleSheet.create({
@@ -19,15 +19,6 @@ const styles = StyleSheet.create({
       flex: 3,
       alignItems:'center',
     },
-    LoginContainer: {
-        paddingTop: 40,
-        justifyContent: 'center',
-        alignItems:'center',
-    },
-    LoginScreenInputContainer: {
-        paddingTop: 20, 
-        borderBottomWidth: 1
-    },
   });
 
 function SignUpScreen({ navigation }) {
@@ -40,19 +31,12 @@ function SignUpScreen({ navigation }) {
             <View style={styles.body}>
                 <View style={styles.LoginContainer}>
                     <Text style={{ fontSize: 20 }}>Cadastro</Text>
-                    <View style={{ paddingTop: 20, borderBottomWidth: 1 }}>
-                        <TextInput placeholder="Usuário" style={{ textAlign: 'center', outlineStyle:'none'}} />
-                    </View>
-                    <View style={{ paddingTop: 40, borderBottomWidth: 1 }}>
-                        <TextInput secureTextEntry placeholder="Senha" style={{ textAlign: 'center', outlineStyle:'none' }} />
-                    </View>
-                    <View style={{ paddingTop: 20, borderBottomWidth: 1 }}>
-                        <TextInput secureTextEntry placeholder="Confirmar Senha" style={{ textAlign: 'center', outlineStyle:'none' }} />
-                    </View>
-                    <View style={{ paddingTop: 30 }}>
+                    <LoginInput placeholder="Usuário" paddingTop={30} />
+                    <LoginInput placeholder="Senha" paddingTop={40} />
+                    <LoginInput placeholder="Confirmar Senha"/>
+                    <View style={{ paddingTop: 70 }}>
                         <Button title="Cadastrar" color='#f9b233' />
                     </View>
-
                 </View>
                 <View style={{ position:'absolute', bottom:50 }}>
                     <Button onPress={() => navigation.navigate('Login')} title="Voltar" color='#171717' />
