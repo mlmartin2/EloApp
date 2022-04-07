@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, TextInput, StyleSheet} from 'react-native';
 
-const LoginInput = ({placeholder='', secure = false, paddingTop = 20}) =>
+const LoginInput = ({value, onChangeText,placeholder='', secure = false, paddingTop = 20}) =>
 {
     return (
         <View style={[styles.LoginInputContainer, {paddingTop:paddingTop}]}>
-            <TextInput secureTextEntry={secure} placeholder={placeholder} style={styles.LoginInputStyle}  />
+            <TextInput value={value} onChangeText={onChangeText} secureTextEntry={secure} placeholder={placeholder} style={styles.LoginInputStyle}  />
         </View>
     )
 }
