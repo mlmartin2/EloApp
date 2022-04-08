@@ -56,7 +56,7 @@ function HomeScreen({ navigation }) {
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
                         <Text style={{fontSize:30, fontWeight:'600'}}>Situação dos Leads</Text>
                     </View>
-                    <View style={{ flex: 3, backgroundColor:'#000000' }}>
+                    <View style={{ flex: 3, }}>
                         <Text> BBBBBBBBBB </Text>
                     </View>
                 </View>

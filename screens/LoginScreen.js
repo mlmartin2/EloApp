@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, } from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button} from 'react-native';
 import LoginInput from "../components/LoginInput";
 import LogoElo from '../assets/LogoElo.png'
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
   });
+
 
 function LoginScreen({ navigation }) {
 
