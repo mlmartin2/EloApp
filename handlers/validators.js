@@ -15,16 +15,16 @@ export default function validate_User(user = {}, userArray = {}, passwordConfirm
 }
 
 // Valida username do usuário
-function validate_Username(userName = '', userArray = {})
+function validate_Username(userName = '', usersjson = '')
 {
     let error
-    if(userName.length < 4) error = 'Usuário deve possuir no mínimo 4 caractéres'
-    alert(userArray)
-    //alert(userArray.length)
-    for(let userIndex = 0; userIndex < userArray.length; userIndex++)
+    const users = JSON.parse(usersjson);
+    if(userName.length < 4) return 'Usuário deve possuir no mínimo 4 caractéres'
+
+    const usersKey = Object.keys(users)
+    for(let i = 0; i < usersKey.length; i++)
     {
-        //alert(Object.keys(userArray))
-        // if(userArray[userIndex].name == userName) {error = 'Nome em uso por outro membro'; break}
+        if(users[usersKey[i]].name == userName) {error = 'Nome em uso por outro membro'; break}
     }
     return error
 }

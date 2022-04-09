@@ -2,6 +2,7 @@ import React, { useState, } from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button} from 'react-native';
 import LoginInput from "../components/LoginInput";
 import LogoElo from '../assets/LogoElo.png'
+import auth from "../handlers/auth";
 
 const styles = StyleSheet.create({
     logo: {
@@ -53,7 +54,8 @@ function LoginScreen({ navigation }) {
                     <LoginInput value={user} onChangeText={setUser} placeholder='Usuário'/>
                     <LoginInput value={password} onChangeText={setPassword} placeholder='Senha' secure={true} />
                     <View style={{ paddingTop: 30 }}>
-                        <Button onPress={() => navigation.navigate('Home')} title="Login" color='#171717' />
+                      <Button onPress={() => auth(user, password)} title="Login" color='#171717' />
+                      <Button onPress={() => navigation.navigate('Home')} title="Login2" color='#171717' />
                     </View>
                 </View>
                 <View style={{ position:'absolute', bottom:50 }}>

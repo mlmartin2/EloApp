@@ -1,0 +1,7 @@
+volta p objetos entocados ( de novo )
+- consertado strings bagunçadas passando do json
+- acesso de usuarios na storage local pelo uuid
+- crypto instalado p/ hash de senhas *n foi preciso
+- id removido como campo de modelo ( id é a key do objeto )
+* mudar 'undefined' como retorno de operações bem sucedidas
+
