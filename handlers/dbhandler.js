@@ -1,4 +1,7 @@
 
+// Registro de entries no armazém local
+// registros feitos após validação (manter validações foras)
+
 // Inicialização de keys das "tabelas" p/ storage local
 function init_Database()
 {
@@ -22,4 +25,6 @@ function add_Lead(model_Lead = {})
 
     }
 }
+
+
 

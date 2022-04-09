@@ -1,11 +1,11 @@
 
 // User -> Usuário p/ validar
 // userArray -> Array com usuários p/ validação
-validate_User(user = {}, userArray = [])
+function validate_User(user = {}, userArray = [])
 {
     for(userIndex = 0; userIndex < userArray.length; userIndex++)
     {
-
+        if(userArray[userIndex].name == user.name) break;
     }
 }
 
@@ -23,4 +23,9 @@ function passwordValidator(password = '')
 {   
     let regularExpression = /^(?=.*[0-9])(?=.*[- ?!@#$%^&*\/\\])(?=.*[A-Z])(?=.*[a-z])[a-zA-Z0-9- ?!@#$%^&*\/\\]{8,}$/
     return regularExpression;
+}
+
+function usernameValidator()
+{
+
 }
