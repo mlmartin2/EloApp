@@ -4,8 +4,18 @@ import { add_User } from './dbhandler'
 
 export default function signUp(username = '', password = '', passwordConfirm = '')
 {
-    let user = construct_User(username, password);
-    let valid = validate(user)
-    if(valid == undefined) add_User(user)
+    //alert('pass')
+    let usersArray = JSON.stringify(localStorage.getItem('Users'))
+    //alert(password + ' ||| ' + passwordConfirm)
+    const user = construct_User(username,  password);
+    //alert('pass')
+    let valid = validate(user, usersArray, passwordConfirm)
+    if(valid == undefined) { add_User(user); alert('Cadastro feito com sucesso!')}
     else alert(valid)
+    //alert('pass')
+}
+
+export function signUp_Object(user = {}, passwordConfirm = '')
+{
+    signUp(user.name, user.password, passwordConfirm)
 }

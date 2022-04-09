@@ -6,16 +6,19 @@ import SignUpScreen from './screens/SignupScreen';
 import HomeScreen from './screens/HomeScreen';
 import * as constructor from './models/constructors';
 import val from './handlers/validators';
-import signUp from "./handlers/signup";
+import signUp, {signUp_Object} from "./handlers/signup";
 import { init_Database } from "./handlers/dbhandler";
 
 function testelocal()
 {
   init_Database()
-  let testUser = constructor.construct_User('abcd', '12345Adj*aj#');
-  alert(testUser.name)
-  alert(val(testUser, []))
-  signUp('abcd','201df*kDD2$','201df*kDD2$')
+  const testUser2 = constructor.construct_User('ab2d', '12345Adj*aj#');
+  const testUser3 = constructor.construct_User('abcxs', '12345Adj*aj#');
+  const testUser4 = constructor.construct_User('abfdz', '12345Adj*aj#');
+  //signUp('abcd','201df*kDD2$','201df*kDD2$')
+   signUp_Object(testUser2, '12345Adj*aj#')
+   signUp_Object(testUser3, '12345Adj*aj#')
+   signUp_Object(testUser4, '12345Adj*aj#')
 }
 
 export default function App() {
