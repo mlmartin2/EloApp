@@ -3,27 +3,30 @@
 // registros feitos após validação (manter validações foras)
 
 // Inicialização de keys das "tabelas" p/ storage local
-function init_Database()
+export function init_Database()
 {
     localStorage.setItem('Users', '')
     localStorage.setItem('Leads', '')
-    init = true;
 }
 
-function add_User(model_User = {})
+export function add_User(user = {})
 {
-    if(users != undefined && user._TYPE == 'User')
-    {
-        // fazer checks de validade antes de adicionar a db
-    }
+    usersArray = JSON.parse(localStorage.getItem('Users'))
+    usersArray.push(model_User)
+    localStorage.setItem('Users', JSON.stringify(usersArray))
 } 
 
-function add_Lead(model_Lead = {})
+export function add_Lead(model_Lead = {})
 {
-    if(lead != undefined && lead._TYPE == 'Lead')
+    if(lead._TYPE == 'Lead')
     {
 
     }
+}
+
+export function get_User(id = -1)
+{
+    return;
 }
 
 

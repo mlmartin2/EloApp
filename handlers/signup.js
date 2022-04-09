@@ -1,16 +1,11 @@
-// Registro de usuário
-// usar RegExp
+import validate from './validators'
+import { construct_User } from '../models/constructors'
+import { add_User } from './dbhandler'
 
-
-function signUp(username = '', password = '', passConfirm = '')
+export default function signUp(username = '', password = '', passwordConfirm = '')
 {
-    if(usernameValidator(username) && passwordValidator(password)) alert('ok'); // Salvar usuario + senha(hash)s
-    if( password =! passConfirm) {alert('Senhas não coincidem!'); return false}
+    let user = construct_User(username, password);
+    let valid = validate(user)
+    if(valid == undefined) add_User(user)
+    else alert(valid)
 }
-
-export default signUp
-
-// if(!upperCase && char == char.toUpperCase()) upperCase = true
-// else if(!lowerCase && char == char.toLowerCase()) lowerCase = true
-// else if(!special && specialCharacters.find(char)) special = true
-// if(upperCase && lowerCase && special) return true;

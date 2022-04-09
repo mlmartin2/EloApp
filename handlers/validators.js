@@ -1,31 +1,37 @@
 
 // User -> Usuário p/ validar
 // userArray -> Array com usuários p/ validação
-function validate_User(user = {}, userArray = [])
+export default function validate_User(user = {}, userArray = [], passwordConfirm = '')
 {
-    for(userIndex = 0; userIndex < userArray.length; userIndex++)
+    let error
+    let userValidate = validate_Username(user.name)
+    let passwordValidate = validate_Password(user.password) 
+    if( userValidate != undefined) error = userValidate
+    else if(passwordValidate != undefined) error = passwordValidate
+    if(error == undefined)
     {
-        if(userArray[userIndex].name == user.name) break;
-    }
+        for(let userIndex = 0; userIndex < userArray.length; userIndex++)
+        {
+            if(userArray[userIndex].name == user.name) {error = 'Nome em uso por outro membro'; break}
+        }
+    }  
+    return error
 }
 
-function usernameValidator(userName = '')
+// Valida username do usuário
+function validate_Username(userName = '')
 {
-    if(userName.length == undefined) alert('Username.length indefinido')
-    else if(userName.length < 4) alert('Usuário deve possuir no mínimo 4 caractéres')
-    else return true;
-    return false
+    let error
+    if(userName.length < 4) error = 'Usuário deve possuir no mínimo 4 caractéres'
+    return error
 }
 
 // FAZER: iterar por char p/ enviar motivo do erro
 // ( senhas q n respeitam as condições )
-function passwordValidator(password = '')
+function validate_Password(password = '')
 {   
+    let error
     let regularExpression = /^(?=.*[0-9])(?=.*[- ?!@#$%^&*\/\\])(?=.*[A-Z])(?=.*[a-z])[a-zA-Z0-9- ?!@#$%^&*\/\\]{8,}$/
-    return regularExpression;
-}
-
-function usernameValidator()
-{
-
+    if(!regularExpression.test(password)) error = 'Senha Inválida'
+    return error;
 }

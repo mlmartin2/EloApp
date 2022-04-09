@@ -4,11 +4,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignupScreen';
 import HomeScreen from './screens/HomeScreen';
-import * as mods  from './models/creators'
+import * as constructor from './models/constructors';
+import val from './handlers/validators';
+import signUp from "./handlers/signup";
+import { init_Database } from "./handlers/dbhandler";
 
 function testelocal()
 {
-  alert(mods.create_User('abc', '123').name)
+  init_Database()
+  let testUser = constructor.construct_User('abcd', '12345Adj*aj#');
+  alert(testUser.name)
+  alert(val(testUser, []))
+  signUp('abcd','201df*kDD2$','201df*kDD2$')
 }
 
 export default function App() {
