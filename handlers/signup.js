@@ -1,6 +1,8 @@
 // Registro de usuário
 // usar RegExp
 
+
+
 function signUp(username = '', password = '', passConfirm = '')
 {
     if(usernameValidator(username) && passwordValidator(password)) alert('ok'); // Salvar usuario + senha(hash)s

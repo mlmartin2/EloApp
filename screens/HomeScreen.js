@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, TextInput, Button} from 'react-native';
 import LoginInput from "../components/LoginInput";
 import LogoElo from '../assets/LogoEloFull.png'
+import { randomUUID } from "crypto";
 
 const styles = StyleSheet.create({
     logo: {
@@ -35,9 +36,12 @@ const styles = StyleSheet.create({
     },
   });
 
+
 function HomeScreen({ navigation }) {
 
     const [user, setUser] = useState('')
+
+    alert(localStorage.getItem('1'))
     return (
         <View key='Main View' style={{ flex: 5, flexDirection: 'row' }}>
             <View style={styles.head}>
@@ -66,19 +70,3 @@ function HomeScreen({ navigation }) {
 }
 
 export default HomeScreen
-
-{/* <View style={{ flex: 4 }}>
-<View style={styles.head}>
-    <View style={{ flex: 5, flexDirection: 'row', borderLeftWidth:1 }}>
-        <View style={{ flex: 1, alignItems:'center', justifyContent:'center'}}>
-            <Image style={styles.logo} source={LogoElo} />
-        </View>
-        <View style={{ flex: 4, backgroundColor:'#f2f2f2', alignItems:'center', justifyContent:'center' }}>
-            <Text style={{fontSize:30}}>Painél de Leads</Text>
-        </View>
-    </View>
-</View>
-<View style={styles.body}>
-
-</View>
-</View> */}
