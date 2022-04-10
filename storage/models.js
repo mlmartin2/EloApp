@@ -1,5 +1,5 @@
-const leadStates = ['Cliente em Potencial', 'Dados Confirmados', 'Reunião Agendada']
-const opportunities = ['RPA', 'Produto Digital', 'Analytics', 'BPM']
+export const leadStates = ['Cliente em Potencial', 'Dados Confirmados', 'Reunião Agendada']
+export const opportunities = ['RPA', 'Produto Digital', 'Analytics', 'BPM']
 
 export const model_User = 
 {
@@ -10,9 +10,10 @@ export const model_User =
 
 export const model_Lead =
 {
-    _TYPE: 'Lead',
+    _TYPE: '',
     name: '',
     phone: '',
     email: '',
     opportunities: [],
+    state: '',
 }

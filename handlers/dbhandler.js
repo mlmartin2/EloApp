@@ -15,18 +15,15 @@ export function add_User(user = {})
     let uniqueID = uuidv4();
     let usersArray = JSON.parse(localStorage.getItem('Users'))
     usersArray[uniqueID] = user;
-    // debugs importantes
-    //alert(user.name) //JSON.stringify(user))
-    //alert(usersArray[uniqueID].name + ' @dbhandler.js')
     localStorage.setItem('Users', JSON.stringify(usersArray))
 } 
 
-export function add_Lead(model_Lead = {})
+export function add_Lead(lead = {})
 {
-    if(lead._TYPE == 'Lead')
-    {
-
-    }
+    let uniqueID = uuidv4();
+    let leadsArray = JSON.parse(localStorage.getItem('Leads'))
+    leadsArray[uniqueID] = lead;
+    localStorage.setItem('Leads', JSON.stringify(leadsArray))
 }
 
 // usar com id especifico
@@ -56,6 +53,13 @@ export function get_Column(_table = '', column = '')
     return rowData 
 }
 
+export function get_TableObject(_table = '')
+{
+    const tableJSON = localStorage.getItem(_table)
+    if(tableJSON == null) {alert('Tabela ' + _table + ' não existe @ dbhandler.js'); return null;}
+    return JSON.parse(tableJSON)
+}
+
 // retorna uuid do registro ( se n existe : undefined)
 export function find_Entry(_table = '', column = '', registry = '')
 {
@@ -70,9 +74,4 @@ export function find_Entry(_table = '', column = '', registry = '')
     return id;
 }
 
-export function get_TableObject(_table = '')
-{
-    const tableJSON = localStorage.getItem(_table)
-    if(tableJSON == null) {alert('Tabela ' + _table + ' não existe @ dbhandler.js'); return null;}
-    return JSON.parse(tableJSON)
-}
+

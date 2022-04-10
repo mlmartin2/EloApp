@@ -54,8 +54,8 @@ function LoginScreen({ navigation }) {
                     <LoginInput value={user} onChangeText={setUser} placeholder='Usuário'/>
                     <LoginInput value={password} onChangeText={setPassword} placeholder='Senha' secure={true} />
                     <View style={{ paddingTop: 30 }}>
-                      <Button onPress={() => auth(user, password)} title="Login" color='#171717' />
-                      <Button onPress={() => navigation.navigate('Home')} title="Login2" color='#171717' />
+                      <Button onPress={() => auth(user, password, navigation.navigate)} title="Login" color='#171717' />
+                      <Button onPress={() => navigation.navigate('Home', {userarg:{}})}/> 
                     </View>
                 </View>
                 <View style={{ position:'absolute', bottom:50 }}>

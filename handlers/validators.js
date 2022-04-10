@@ -14,6 +14,16 @@ export default function validate_User(user = {}, userArray = {}, passwordConfirm
     return error
 }
 
+export function validate_Lead(lead = {}, leadArray = {})
+{
+    let error
+    let emailValidate = validate_Email(lead.email)
+    let phoneValidate = validate_Phone(lead.phone)
+    if(emailValidate != undefined ) error = emailValidate
+    else if(phoneValidate != undefined) error = phoneValidate
+    return error
+}
+
 // Valida username do usuário
 function validate_Username(userName = '', usersjson = '')
 {
@@ -38,4 +48,20 @@ function validate_Password(password = '', passwordConfirm = '')
     if(password != passwordConfirm) {error = 'Senhas não coincidem'}
     if(!regularExpression.test(password)) error = 'Senha Inválida'
     return error;
+}
+
+function validate_Email(email = '')
+{
+    let error
+    let regularExpression = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
+    if(!regularExpression.test(email)) error = 'erro de email'
+    return error
+}
+
+function validate_Phone(phone = '')
+{
+    let error
+    let regularExpression = /^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/
+    if(!regularExpression.test(phone)) error = 'erro tel'
+    return error
 }

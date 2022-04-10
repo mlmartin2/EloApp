@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, TextInput, Button} from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity} from 'react-native';
 import LoginInput from "../components/LoginInput";
-import LogoElo from '../assets/LogoEloFull.png'
-import { randomUUID } from "crypto";
+import LogoElo from '../assets/LogoEloFullUpdate.png'
+import { get_Entry } from "../handlers/dbhandler";
 
 const styles = StyleSheet.create({
     logo: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     },
     head: {
       flex: 1,
-      backgroundColor: '#2e3334',
+      backgroundColor: '#171b1c',
     },
     body: {
       paddingTop:30,
@@ -37,31 +37,64 @@ const styles = StyleSheet.create({
   });
 
 
-function HomeScreen({ navigation }) {
+function HomeScreen({ route, navigation }) {
 
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState()
+    const [userId, setUserId] = useState()
+    const {userarg, userid} = route.params;
 
-    alert(localStorage.getItem('1'))
+    useEffect(() =>
+    {
+        setUserId(userid)
+        if(userarg == undefined)
+        {const _user = get_Entry('Users', userId); setUser(user)}
+        else (setUser(userarg))
+    }, [])
+
     return (
         <View key='Main View' style={{ flex: 5, flexDirection: 'row' }}>
             <View style={styles.head}>
                 <View style={{ flex: 4, }}>
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 2, borderBottomColor: '#ffffff' }}>
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                         <Image style={styles.logo} source={LogoElo} />
                     </View>
-                    <View style={{ paddingTop:10, flex: 3, backgroundColor: '#2e3334' }}>
-                        <Button title="Leads Atuais" color='#f9b233'/>
-                        <Button title="Novo Lead" color='#171b1c'/>
+                    <View style={{ paddingTop: 10, flex: 3, backgroundColor: '#171b1c' }}>
+                        <TouchableOpacity 
+                        style={{ 
+                            justifyContent: 'center', 
+                            alignItems: 'center', }}>
+                            <Text style={{ fontWeight: '600', color: '#f9b233' }}>LEADS</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('New Lead', { userid: userId })}
+                            style={{
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                paddingTop:10,
+                            }}>
+                            <Text style={{ fontWeight: '600', color:'#ffffff' }}>CADASTRAR LEAD</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                        style={{
+                            position:'absolute', 
+                            bottom:20,
+                            right: '50%',
+                            justifyContent:'center'}}
+                        onPress={() => navigation.navigate('Login')}>
+                            <Text style={{color:'red'}}>
+                                SAIR
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
             <View style={styles.body}>
                 <View style={{flexDirection:'column', flex: 4, }}>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
-                        <Text style={{fontSize:30, fontWeight:'600'}}>Situação dos Leads</Text>
+                        <Text style={{fontSize:30, fontWeight:'600'}}>LEADS</Text>
                     </View>
                     <View style={{ flex: 3, }}>
-                        <Text> BBBBBBBBBB </Text>
+                        <Text>{user != undefined ? user.name : 'Carregando...' } </Text>
                     </View>
                 </View>
             </View>
