@@ -1,25 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
 
+
 function App() {
+
   return (
-    <div className="App">
+    <div >
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img className="Logo" src={process.env.PUBLIC_URL + 'LogoElo.png'} />
       </header>
+      <div className='BodyContainer' >
+        <body className='Body'>
+          {teste()}
+        </body>
+        <body className='BodyHalf'>
+          <text>adwoakdpoak</text>
+        </body>
+      </div>
     </div>
   );
+}
+
+function teste() {
+  return <text>abc</text>
 }
 
 export default App;
