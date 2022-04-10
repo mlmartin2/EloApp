@@ -34,23 +34,65 @@
 }
 
 .BodyContainer {
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   display: flex;
 }
 
-.Body {
-  display: flex;
+.PageTitle
+{
+  font-weight: bold;
   font-size: larger;
-  order: 1;
 }
 
-.BodyHalf {
+.PageTitleContainer
+{
   display: flex;
-  order: 1;
+  padding-top: 40px;
+}
+
+.LoginContainer
+{
+  padding-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  display:flex;
+  top: 70vh;
+}
+
+.LoginInputItem
+{
+  border-width: 0px;
+  border-bottom-width: 1px;
+  user-select: none;
+  text-align: center;
+  outline-style: none;
+  display: list-item;
+}
+
+.LoginInputContainer
+{
+  padding-top: 10px;
+
 }
 
 .Teste {
   align-self: center;
+}
+
+.SignUpButtonContainer {
+  display:flex;
+  bottom: 50px;
+  position: absolute;
+}
+
+.SignInButtonContainer {
+  display:flex;
+  padding-top: 25px;
+}
+
+.ButtonDefault {
+  padding: 6px 15px 6px 15px;
 }
 
 @keyframes App-logo-spin {
