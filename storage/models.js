@@ -15,5 +15,5 @@ export const model_Lead =
     phone: '',
     email: '',
     opportunities: [],
-    state: '',
+    state: 0,
 }

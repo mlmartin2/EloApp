@@ -6,6 +6,9 @@ import { signUp_Object } from "../handlers/signupLead";
 import { construct_Lead } from "../storage/constructors";
 import { opportunities, leadStates } from "../storage/models";
 
+// touchable opacity repetindo com mesmos parametros
+// generalizar view
+
 const styles = StyleSheet.create({
     logo: {
       height:100,
@@ -106,19 +109,27 @@ export default function NewLeadScreen({ route, navigation }) {
                             position:'absolute', 
                             bottom:20,
                             right: '50%',
-                            justifyContent:'center'}}
+                            justifyContent:'center',
+                            borderWidth:1,
+                            borderRadius:5,
+                            left:20,
+                            right:20,
+                            paddingTop:5,
+                            paddingBottom:5,
+                            borderColor:'#e66c47' }}
                         onPress={() => navigation.navigate('Login')}>
-                            <Text style={{color:'red'}}>
+                            <Text style={{color:'#e66c47', alignSelf:'center'}}>
                                 SAIR
                             </Text>
                         </TouchableOpacity>
+                        
                     </View>
                 </View>
             </View>
             <View style={styles.body}>
                 <View style={{ flex: 5, }}>
                     <View style={{ flex: 1, }}>
-                        <Text style={{ fontSize: 30, fontWeight: '600' }}>Cadastro de Novo Lead</Text>
+                        <Text style={{ fontSize: 30, fontWeight: '600', paddingLeft:40 }}>Cadastro de Novo Lead</Text>
                     </View>
                     <View style={{ flex: 2, flexDirection: 'row' }}>
                         <View style={{ flex: 2 }}>
