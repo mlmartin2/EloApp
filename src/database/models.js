@@ -1,5 +1,5 @@
 export const leadStates = ['Cliente em Potencial', 'Dados Confirmados', 'Reunião Agendada']
-export const opportunities = ['RPA', 'Produto Digital', 'Analytics', 'BPM']
+export const opportunities = {'RPA':false, 'Produto Digital':false, 'Analytics':false, 'BPM':false}
 
 export const model_User = 
 {
@@ -14,6 +14,6 @@ export const model_Lead =
     name: '',
     phone: '',
     email: '',
-    opportunities: [],
+    opportunities: opportunities,
     state: 0,
 }

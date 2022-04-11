@@ -2,7 +2,7 @@ import './styles/SignUser.css'
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Auth from '../handlers/auth';
 import React, { useState } from 'react';
-import signUp from '../handlers/register';
+import { signUp_User } from '../handlers/register';
 
 export default function SignUser()
 {
@@ -25,7 +25,7 @@ export default function SignUser()
             <div className='SignUpContainer'><input id='psw' onChange={(val) => setPass(val.target.value)} className='LoginInputItem' placeholder='Senha' /></div>
             <div className='LoginInputContainer'><input id='cpsw' onChange={(val) => setPassConfirm(val.target.value)} className='LoginInputItem' placeholder='Repetir Senha' /></div>
             <div className='SignInButtonContainer'>
-                <button onClick={() => signUp(user, pass, passConfirm)}  className='ButtonDefault ButtonElo'>
+                <button onClick={() => signUp_User(user, pass, passConfirm)}  className='ButtonDefault ButtonElo'>
                   Cadastrar
                 </button>
             </div>

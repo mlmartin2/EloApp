@@ -66,3 +66,35 @@
     padding: 5px 30px 5px 30px;
     align-self: center;
 }
+
+.HeaderContainer{
+    display: flex;
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.Title
+{
+    display: flex;
+    font-size: 30px;
+    border-bottom-width: 1px;
+    font-weight: bolder;
+    padding-left:10px;
+}
+
+.LeadStatesContainer{
+    display: flex;
+    align-items: center;
+}
+
+
+.LeadStateItem{
+    display: flex;
+    flex:1;
+}
+
+.WORKAROUND_LeadStateCenter{
+    align-self:center;
+    justify-self: center;
+}

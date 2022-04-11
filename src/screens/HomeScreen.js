@@ -1,5 +1,14 @@
 import { Link } from 'react-router-dom'
 import './styles/Home.css'
+import { DragDropContext } from 'react-beautiful-dnd'
+import { useDrag } from 'react-dnd'
+import { Draggable } from 'react-beautiful-dnd'
+import { Droppable } from 'react-beautiful-dnd'
+
+const ItemTypes =
+{
+    LEAD:'lead'
+}
 
 export default function Home() {
     return (
@@ -19,10 +28,53 @@ export default function Home() {
                         </button>
                     </Link>
                 </div>
-        </head>
-        <body className='Page'>
-            <text>def</text>
-        </body>
-    </div>
+            </head>
+            <body className='Page'>
+                <div className='HeaderContainer'>
+                    <text className='Title'>LEADS</text>
+                    <text className='SubTitle'>Cadastrados</text>
+                </div>
+
+                        <div className='LeadStatesContainer'>
+                            <div className='LeadStateItem'>
+                                <text> Cliente em Potencial</text>
+                            </div>
+                            <div className='LeadStateItem'>
+                                <text> Dados Confirmados</text>
+                            </div>
+                            <div className='LeadStateItem'>
+                                <text> Reunião Agendada</text>
+                            </div>
+                        </div>
+
+                <div className='LeadStatesContainer'>
+                    <div className='LeadStateItem'>
+                        <text> Cl1</text>
+                    </div>
+                    <div className='LeadStateItem'>
+                        <text></text>
+                    </div>
+                    <div>
+                        <text></text>
+                    </div>
+                </div>
+            </body>
+        </div>
     )
+  }
+
+  function TestDrag()
+  {
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: ItemTypes.LEAD,
+        collect: (monitor) => ({
+          isDragging: !!monitor.isDragging()
+        })
+      }))
+
+      return(
+          <div ref={drag} style={{cursor:'move'}}>
+              <text>aoiwdawodad</text>
+          </div>
+      )
   }

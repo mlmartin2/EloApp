@@ -1,8 +1,8 @@
-import validate from './validators'
-import { construct_User } from '../database/constructors'
-import { add_User } from '../database/manager'
+import validate, {validate_Lead} from './validators'
+import { construct_User,construct_Lead } from '../database/constructors'
+import { add_User,add_Lead, get_TableObject } from '../database/manager'
 
-export default function signUp(username = '', password = '', passwordConfirm = '')
+export function signUp_User(username = '', password = '', passwordConfirm = '')
 {
     const usersArray = localStorage.getItem('Users')
     const user = construct_User(username,  password);
@@ -11,7 +11,22 @@ export default function signUp(username = '', password = '', passwordConfirm = '
     else alert(valid)
 }
 
-export function signUp_Object(user = {}, passwordConfirm = '')
+export function signUp_UserObject(user = {}, passwordConfirm = '')
 {
-    signUp(user.name, user.password, passwordConfirm)
+    signUp_User(user.name, user.password, passwordConfirm)
+}
+
+export function signUp_Lead(name = '', phone = '', email = '', servs = {})
+{
+    alert(servs + " @register")
+    const leadsArray = get_TableObject('Leads')
+    const lead = construct_Lead(name, phone, email, servs);
+    const valid = validate_Lead(lead, leadsArray)
+    if(valid == undefined) { add_Lead(lead); alert('Lead cadastrada com sucesso!')}
+    else alert(valid)
+}
+
+export function signUp_LeadObject(lead = {})
+{
+    signUp_Lead(lead.name, lead.phone, lead.email)
 }

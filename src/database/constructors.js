@@ -9,13 +9,15 @@ export function construct_User(name = '', password = '')
     return newUser;
 }
 
-export function construct_Lead(name = '', phone = '', email = '', opportunities = '')
+export function construct_Lead(name = '', phone = '', email = '', opportunities = [])
 {
     let newLead = mods.model_Lead;
+    alert(newLead.opportunities + "@ creators")
     newLead._TYPE = 'Lead'
     newLead.name = name;
     newLead.phone = phone;
     newLead.email = email;
+    alert(opportunities)
     newLead.opportunities = opportunities;
     return newLead;
 }
