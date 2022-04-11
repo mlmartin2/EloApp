@@ -56,7 +56,7 @@ export function get_Column(_table = '', column = '')
 export function get_TableObject(_table = '')
 {
     const tableJSON = localStorage.getItem(_table)
-    alert(tableJSON)
+    //alert(tableJSON + ' @database/manager.js . get_tableObject()')
     if(tableJSON == null) {alert('Tabela ' + _table + ' não existe @ dbhandler.js'); return null;}
     return JSON.parse(tableJSON)
 }
