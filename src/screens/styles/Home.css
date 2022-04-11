@@ -71,7 +71,6 @@
     display: flex;
     height: 20vh;
     justify-content: center;
-    align-items: center;
 }
 
 .Title
@@ -85,7 +84,7 @@
 
 .LeadStatesContainer{
     display: flex;
-    align-items: center;
+    padding: 15px 0px 15px 0px;
 }
 
 

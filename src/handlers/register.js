@@ -18,7 +18,6 @@ export function signUp_UserObject(user = {}, passwordConfirm = '')
 
 export function signUp_Lead(name = '', phone = '', email = '', servs = {})
 {
-    alert(servs + " @register")
     const leadsArray = get_TableObject('Leads')
     const lead = construct_Lead(name, phone, email, servs);
     const valid = validate_Lead(lead, leadsArray)

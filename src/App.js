@@ -6,6 +6,7 @@ import SignUser from './screens/SignUserScreen';
 import React, { useEffect } from 'react';
 import { init_Database } from './database/manager';
 import NewLeadScreen from './screens/NewLeadScreen';
+import Projects from './screens/DragTestScreen';
 
 function App() {
   useEffect(() =>
@@ -20,20 +21,9 @@ function App() {
       <Route element={<SignUser/>} path = "/signup" />
       <Route element={<NewLeadScreen/>} path ="/newlead"/>
       <Route element={<Home />} exact path="/" />
+    <Route element={<Projects/>} path="/testdrag" />
     </Routes>
   </BrowserRouter>
-  )
-}
-
-const AppRoutes = () =>
-{
-  return(
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Login />} exact path="/login" />
-        <Route element={<Home />} exact path="/" />
-      </Routes>
-    </BrowserRouter>
   )
 }
 

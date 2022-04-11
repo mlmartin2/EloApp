@@ -37,20 +37,15 @@ export default function NewLeadScreen() {
         const table = get_TableObject('Leads')
         let keys = Object.keys(table)
         
-        alert(table[keys[0]].opportunities) 
+        alert(Object.values(table[keys[0]].opportunities)) 
     }
 
     const toggleServ = (servindex) =>
     {
-        //alert(Object.values(opportunities))
         var svs = opportunities;
-        alert(Object.values(svs) + " @NewLeadScreen . toggleServ() 1")
-        alert(svs[servindex] + "@NewLeadScreen . toggleServ() 3/2")
         if(svs[servindex] == true) svs[servindex] = false;
         else svs[servindex] = true;
         setServs(svs)
-        alert(Object.values(svs)  + " @NewLeadScreen . toggleServ() 2")
-        // alert(svs[servindex])
     }
 
     return (
