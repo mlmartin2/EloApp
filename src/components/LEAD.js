@@ -1,11 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import { useDrag } from "react-dnd"
 
 export default function LEAD({id, state})
 {
+    const[leadstate, setLeadstate] = useState(state)
+
     const [{isDragging}, drag] = useDrag(() => ({
         type: "LEAD",
-        item:{id:id},
+        item:{id:id, state:state},
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging(), 
         }),

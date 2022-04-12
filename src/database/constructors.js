@@ -1,5 +1,7 @@
 import * as mods from './models'
 
+// Construtores dos modelos declarados
+
 export function construct_User(name = '', password = '')
 {
     let newUser = mods.model_User;

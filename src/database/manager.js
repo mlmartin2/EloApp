@@ -1,7 +1,7 @@
 import {v4 as uuidv4} from 'uuid'
 
 // Registro de entries no armazém local
-// registros feitos após validação (manter validações foras)
+// registros feitos após validação (**manter validações fora**)
 
 // Inicialização de keys das "tabelas" p/ storage local
 export function init_Database()
@@ -10,6 +10,7 @@ export function init_Database()
     localStorage.setItem('Leads', '{}')
 }
 
+// Adiciona User na tablea 'Users'
 export function add_User(user = {})
 {
     let uniqueID = uuidv4();
@@ -18,6 +19,7 @@ export function add_User(user = {})
     localStorage.setItem('Users', JSON.stringify(usersArray))
 } 
 
+// Adiciona Lead na tabela 'Leads'
 export function add_Lead(lead = {})
 {
     let uniqueID = uuidv4();
@@ -53,10 +55,10 @@ export function get_Column(_table = '', column = '')
     return rowData 
 }
 
+// Pega tabela por nome e converte em Object
 export function get_TableObject(_table = '')
 {
     const tableJSON = localStorage.getItem(_table)
-    //alert(tableJSON + ' @database/manager.js . get_tableObject()')
     if(tableJSON == null) {alert('Tabela ' + _table + ' não existe @ dbhandler.js'); return null;}
     return JSON.parse(tableJSON)
 }
