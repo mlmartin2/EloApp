@@ -1,14 +1,19 @@
 import './styles/Login.css'
-import { BrowserRouter, Route, Routes, Link, useNavigate, Navigate } from 'react-router-dom';
-import Auth from '../components/Auth';
+import {Link} from 'react-router-dom';
 import React, {useState} from 'react';
 import { find_Entry, get_Entry } from '../database/manager';
-import auth from '../handlers/auth';
+import useAuth from '../hooks/useAuth';
 
 export default function Login()
 {
+  const {setAuth} = useAuth();
   const [user, setUser] = useState('')
   const [password, setPassword] = useState()
+
+  const Submit = () =>
+  {
+    setAuth({user, password});
+  }
 
   return (
     <div >
@@ -40,15 +45,6 @@ export default function Login()
   )
 }
 
-function Teste(username = '', password = '')
-{//aJXHw28*273v
-  let error = false
-  //alert(username)
-  const userid = find_Entry('Users', 'name', username)
-  let user = get_Entry('Users', userid);
-  if(password == '' || username == '') {error = true; alert('Usuário ou senha em branco')}
-  else if( user == undefined || user.password != password) {error = true; alert('Usuário ou senha inválida')}
-}
 
 function AuthError(index = -1)
 {
@@ -57,5 +53,5 @@ function AuthError(index = -1)
     'Nome do usuário não digitado',
     'Usuário não encontrado',
     'Senha Inválida']
-  //alert(authError[index])
 }
+
