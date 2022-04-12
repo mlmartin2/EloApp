@@ -12,17 +12,19 @@
     flex-direction: column;
 }
 
-.Page{
+.LeadPage{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 20px 20px 20px 20px;
 }
 
 .FloatRight
 {
     display:flex;
+    border: solid #000;
+    border-width: 0px 0px 0px 1px;
     flex-direction: column;
-    padding: 20px 0px 20px 75px;   
+    padding: 20px 75px 20px 25px;   
 }
 
 .FloatLeft
@@ -130,4 +132,9 @@ ad´pwdpawkdawopkadkapowadkop */
 
 .WORKAROUND_paddingLeft{
     padding-left: 10px;
+}
+
+.MasterCheckBox{
+    border: solid #000;
+    border-width: 0px 0px 1px 0px;
 }

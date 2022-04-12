@@ -68,7 +68,7 @@ export default function NewLeadScreen() {
                     </Link>
                 </div>
             </head>
-            <body className='Page'>
+            <body className='LeadPage'>
                 <div className='FloatLeft'>
                     <div className='HeaderContainer'>
                         <text className='Title'>Cadastro de Lead</text>
@@ -84,14 +84,15 @@ export default function NewLeadScreen() {
                     </div>
                     <div className='SignLeadButton'>
                         <button onClick={(val) => signUp_Lead(name, phone, email, servs)}> Cadastrar </button>
-                        <button onClick={() => DEBUG_Leads()} />
                     </div>
                 </div>
                 <div className='FloatRight'>
                     <div className='HeaderContainer'>
                         <text className='SubTitle'>Serviços</text>
                     </div>
-
+                    <div className='MasterCheckBox'>
+                        <input style={{borderWidth:'1px', borderColor:'#000000', borderStyle:'solid'}} type='checkbox'></input>
+                    </div>
                     {TESTE()}
                 </div>
             </body>

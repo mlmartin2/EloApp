@@ -20,7 +20,6 @@ export default function Home() {
                     <Link to='../newlead'>
                         <button className='SideButton ButtonGray'> NOVO LEAD</button>
                     </Link>
-                    <button onClick={() => mapLeads()}>TESTE</button>
                     <Link to='../login'>
                         <button className='LogOutButton'>
                             SAIR
@@ -28,7 +27,7 @@ export default function Home() {
                     </Link>
                 </div>
             </head>
-            <body className='Page'>
+            <body className='HomePage'>
                 <div className='HeaderContainer'>
                     <text className='Title'>LEADS</text>
                     <text className='SubTitle'>Cadastrados</text>
@@ -59,27 +58,38 @@ function mapLeads() {
     let tableItems = []
     let columnNames = ['','','']
     let columnItems = []
-    alert('certo')
     keys.map(key => {
         let item = table[key]
         for(let i = 0; i < 5; i++)
         {
             if(item.state == i) columnNames[i] = item.name
+
+            if(item.state == i){
+                columnItems.push(
+                    <text onClick={() => alert('asaa')}>{columnNames[i]}</text>
+                )
+            }
+            else{
+                columnItems.push(
+                    <text></text>
+                )
+            }
             
         }
         tableItems.push(
             <div className='LeadStatesContainer'>
                 <div className='LeadStateItem'>
-                    <text onClick={() => alert('aaa')}>{columnNames[0]}</text>
+                    {columnItems[0]}
                 </div>
                 <div className='LeadStateItem'>
-                    <text onClick={() => alert('aaa')}>{columnNames[1]}</text>
+                    {columnItems[1]}
                 </div>
                 <div className='LeadStateItem'>
-                    <text onClick={() => alert('aaa')}>{columnNames[2]}</text>
+                    {columnItems[2]}
                 </div>
             </div>
         )
+        columnItems = []
     })
 
     return tableItems
