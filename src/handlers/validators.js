@@ -1,6 +1,6 @@
-// User -> Usuário p/ validar
-// userArray -> Array com usuários p/ validação
-export default function validate_User(user = {}, userArray = {}, passwordConfirm = '')
+// Validação de dados de acordo com condições fornecidas
+
+export function validate_User(user = {}, userArray = {}, passwordConfirm = '')
 {
     let error
     let passwordValidate = validate_Password(user.password, passwordConfirm)
@@ -44,8 +44,11 @@ function validate_Password(password = '', passwordConfirm = '')
 {   
     let error
     let regularExpression = /^(?=.*[0-9])(?=.*[- ?!@#$%^&*\/\\])(?=.*[A-Z])(?=.*[a-z])[a-zA-Z0-9- ?!@#$%^&*\/\\]{8,}$/
-    if(password != passwordConfirm) {error = 'Senhas não coincidem'}
-    if(!regularExpression.test(password)) error = 'Senha Inválida'
+    if(password == '') error = 'Senha não digitada'
+    else if(passwordConfirm == '') error =  'Confirmar senha'
+    else if(password != passwordConfirm) {error = 'Senhas não coincidem'}
+    else if(!regularExpression.test(password))
+     {error = 'Senha deve ter no mínimo: uma letra maiúscula, uma minúscula, um número e um dígito especial';}
     return error;
 }
 

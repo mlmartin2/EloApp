@@ -9,7 +9,7 @@ export default function DDTable()
         <div>
             <div style={{ display: 'flex', flex: 3, flexDirection: 'row' }}>
                 <div style={{display:'flex', flex:1}}>
-                    <DragDrop width={300} lead={lead} itemindex={0} />
+                    <DragDrop width={300} lead={lead} itemindex={0}  />
                 </div>
                 <div style={{display:'flex', flex:1}} >
                     <DragDrop width={300} itemindex={1}/>

@@ -21,20 +21,21 @@ export default function SignUser()
             <text className='PageTitle'>Cadastro de Usuário</text>
           </div>
           <div className='LoginContainer'>
-            <div className='LoginInputContainer'><input onChange={(val) => setUser(val.target.value)} id='usr' className='LoginInputItem' placeholder='Novo Usuário' /></div>
-            <div className='SignUpContainer'><input id='psw' onChange={(val) => setPass(val.target.value)} className='LoginInputItem' placeholder='Senha' /></div>
-            <div className='LoginInputContainer'><input id='cpsw' onChange={(val) => setPassConfirm(val.target.value)} className='LoginInputItem' placeholder='Repetir Senha' /></div>
+            <div className='LoginInputContainer'><input onChange={(val) => setUser(val.target.value)} id='usr' className='LoginInputItem' placeholder='Novo Usuário *' /></div>
+            <div className='SignUpContainer'><input id='psw' onChange={(val) => setPass(val.target.value)} className='LoginInputItem' placeholder='Senha *' /></div>
+            <div className='LoginInputContainer'><input id='cpsw' onChange={(val) => setPassConfirm(val.target.value)} className='LoginInputItem' placeholder='Repetir Senha *' /></div>
+            <div style={{ paddingTop: '10px' }}><text style={{ fontSize: '14px' }}>Campos com * são obrigatórios</text></div>
             <div className='SignInButtonContainer'>
-                <button onClick={() => signUp_User(user, pass, passConfirm)}  className='ButtonDefault ButtonElo'>
-                  Cadastrar
-                </button>
+              <button style={{ color: '#ffffff' }} onClick={() => signUp_User(user, pass, passConfirm)} className='ButtonDefault ButtonElo'>
+                Cadastrar
+              </button>
             </div>
             <div className='SignUpButtonContainer'>
-                <Link to='/login'>
-                    <button className='ButtonDefault ButtonGray'>
-                        Voltar 
-                    </button>
-                </Link>
+              <Link to='/'>
+                <button className='ButtonDefault ButtonGray'>
+                  Voltar
+                </button>
+              </Link>
             </div>
           </div>
         </body>

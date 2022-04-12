@@ -1,4 +1,4 @@
-// componente p botao auth
+// componente p botao auth (n utilizado)
 
 import { find_Entry } from "../database/manager"
 

@@ -84,12 +84,12 @@ export default function NewLeadScreen() {
                 </div>
                 <div className='SideButtonContainer'>
                     <div className='WORKAROUND_CenterItem'>
-                        <Link className='SideBUttonContainer' to={'../'}>
+                        <Link className='SideBUttonContainer' to={'../home'}>
                             <button className='SideButton ButtonGray'>LEADS</button>
                         </Link>
                     </div>
                     <button className='SideButton'> NOVO LEAD</button>
-                    <Link to='../login'>
+                    <Link to='../'>
                         <button className='LogOutButton'>
                             SAIR
                         </button>

@@ -26,6 +26,7 @@ export function add_Lead(lead = {})
     let leadsArray = JSON.parse(localStorage.getItem('Leads'))
     leadsArray[uniqueID] = lead;
     localStorage.setItem('Leads', JSON.stringify(leadsArray))
+    
 }
 
 // usar com id especifico
@@ -35,6 +36,19 @@ export function get_Entry(_table = '',id = -1)
     const table = get_TableObject(_table)
     if(table[id] == null || table[id] == undefined) alert('Id não existe na tabela')
     return table[id];
+}
+
+// Modificar dados de uma entrada especifica ( por id )
+export function set_EntryData(_table = '', id = '', entryKey = '', value)
+{
+    alert(id)
+    const table = get_TableObject(_table)
+    let item = table[id];
+    if(item == null || item == undefined)alert('Id não existe na tabela');
+    item[entryKey] = value;
+    table[id] = item;
+    localStorage.setItem(id, JSON.stringify(table))
+    alert(get_Column('Leads', 'state'))
 }
 
 // Funções específicas

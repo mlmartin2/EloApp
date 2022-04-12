@@ -1,12 +1,15 @@
-import validate, {validate_Lead} from './validators'
+import {validate_Lead, validate_User} from './validators'
 import { construct_User,construct_Lead } from '../database/constructors'
 import { add_User,add_Lead, get_TableObject } from '../database/manager'
+
+// Funcs gerais p/ registros (Usuário e Leads)
+// Validação -> Cadastro
 
 export function signUp_User(username = '', password = '', passwordConfirm = '')
 {
     const usersArray = localStorage.getItem('Users')
     const user = construct_User(username,  password);
-    const valid = validate(user, usersArray, passwordConfirm)
+    const valid = validate_User(user, usersArray, passwordConfirm)
     if(valid == undefined) { add_User(user); alert('Cadastro feito com sucesso!')}
     else alert(valid)
 }

@@ -1,6 +1,6 @@
 // Modelos gerais p/ o sistema
 // Usuários + Leads (modelos)
-// leadStates + opportunities (consts)
+// leadStates + opportunities (consts reais)
 
 export const leadStates = ['Cliente em Potencial', 'Dados Confirmados', 'Reunião Agendada']
 export const opportunities = {'RPA':false, 'Produto Digital':false, 'Analytics':false, 'BPM':false}

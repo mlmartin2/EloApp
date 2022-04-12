@@ -9,7 +9,7 @@ export default function Login()
 {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState()
-  const navigate = useNavigate()
+
   return (
     <div >
       <header className="App-header">
@@ -24,11 +24,11 @@ export default function Login()
             <div className='LoginInputContainer'><input id='usr' onChange={(val) => setUser(val.target.value)} className='LoginInputItem' placeholder='Usuário' /></div>
             <div className='LoginInputContainer'><input id='psw' onChange={(val) => setPassword(val.target.value)} className='LoginInputItem' placeholder='Senha' /></div>
             <div className='SignInButtonContainer'>
-              <button onClick={() => navigate('/')}>Login</button>
+              <button onClick={() => alert('a')}>Login</button>
             </div>
             <div className='SignUpButtonContainer'>
               <Link to='/signup'>
-                <button className='ButtonDefault ButtonElo'>
+                <button style={{color:'#ffffff', fontSize: '15px', }} className='ButtonDefault ButtonElo'>
                   Cadastro
                 </button>
               </Link>
@@ -43,12 +43,11 @@ export default function Login()
 function Teste(username = '', password = '')
 {//aJXHw28*273v
   let error = false
-  alert(username)
+  //alert(username)
   const userid = find_Entry('Users', 'name', username)
   let user = get_Entry('Users', userid);
   if(password == '' || username == '') {error = true; alert('Usuário ou senha em branco')}
   else if( user == undefined || user.password != password) {error = true; alert('Usuário ou senha inválida')}
-  else return(error ? <button>LOGIN</button> : <Navigate to={'/'}/>)
 }
 
 function AuthError(index = -1)
@@ -58,5 +57,5 @@ function AuthError(index = -1)
     'Nome do usuário não digitado',
     'Usuário não encontrado',
     'Senha Inválida']
-  alert(authError[index])
+  //alert(authError[index])
 }
