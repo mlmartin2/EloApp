@@ -1,0 +1,114 @@
+
+.RootStyle{
+    display: flex;
+    flex-direction: row;
+}
+
+.SideBar{
+    background-color: #171b1c;
+    display: flex;
+    width: 15vw;
+    height: 100vh;
+    align-items: 'center';
+    flex-direction: column;
+}
+
+.HomePage{
+    display:flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+}
+
+.LogoContainer{
+    align-self:center;
+
+}
+
+.SideButtonContainer{
+    padding-top: 20px;
+    align-self: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.SideButton{
+    padding: 10px 0px 5px 0px;
+    font-weight: bolder;
+    font-size: large;
+    color:#f9b233;
+    background-color: #171b1c;
+    border:none;
+}
+
+.ButtonGray {
+    color: antiquewhite
+}
+
+.ButtonElo {
+    color: #f9b233;
+}
+
+.LogOutButtonContainer {
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+    bottom: 50px;
+}
+
+.LogOutButton {
+    position: absolute;
+    bottom: 50px;
+    border-color: #d4552f;
+    background-color:#171b1c;
+    color:#d4552f;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: bolder;
+    padding: 5px 30px 5px 30px;
+    align-self: center;
+}
+
+.HeaderContainer{
+    display: flex;
+    height: 20vh;
+}
+
+.Title
+{
+    display: flex;
+    font-size: 30px;
+    border-bottom-width: 1px;
+    font-weight: bolder;
+    padding-left:10px;
+}
+
+.LeadStatesContainer{
+    display: flex;
+    flex: 3;
+    padding: 0px 10% 0px 10%;
+    border: 1px solid black;
+    position: relative;
+    width: 40vw;
+}
+
+.LeadStateItem{
+    display: flex;
+    flex:1;
+    font-weight: bolder;
+    border-top: 100%;
+}
+
+.LeadStateRowContainer{
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    height:100%;
+}
+
+.WORKAROUND_LeadStateCenter{
+    align-self:center;
+    justify-self: center;
+}

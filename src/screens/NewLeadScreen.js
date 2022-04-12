@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './styles/NewLead.css'
 import { opportunities } from '../database/models'
@@ -12,24 +12,28 @@ export default function NewLeadScreen() {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [servs, setServs] = useState(opportunities)
+    const [selectAll, setSelectAll] = useState(false)
+
+    useEffect(() =>
+    {
+    }, [opportunities])
 
     function TESTE()
     {
-        let servs = []
+        let servsarray = []
         let keys = Object.keys(opportunities)
         for(let key = 0; key < keys.length; key++)
         {
             let serv = opportunities[keys[key]]
-            //alert(serv)
-            servs.push(
+            servsarray.push(
             <div className='ServiceContainer'>
-                <input type='checkbox' value={opportunities[serv]} onChange={() => toggleServ(keys[key])} />
+                <input id={keys[key]} key={keys[key]} type='checkbox'   onChange={(e) => toggleServ(keys[key])} />
                 <text className='WORKAROUND_paddingLeft'>{keys[key]}</text>
 
             </div>
             )
         }
-        return servs;
+        return servsarray;
     }
 
     function DEBUG_Leads()
@@ -40,12 +44,36 @@ export default function NewLeadScreen() {
         alert(Object.values(table[keys[0]].opportunities)) 
     }
 
+    const setServ = (id, bool) =>
+    {
+        var svs = servs;
+        svs[id] = bool;
+        setServs(svs)
+    }
+
     const toggleServ = (servindex) =>
     {
         var svs = opportunities;
         if(svs[servindex] == true) svs[servindex] = false;
         else svs[servindex] = true;
         setServs(svs)
+    }
+
+    function ToggleAll() {
+        let ops = servs;
+        let keys = Object.keys(servs)
+        let selectAll = false
+        let trueCount = 0
+        for (let i = 0; i < keys.length; i++) {
+            if (servs[keys[i]] == true) {trueCount++; selectAll = true }
+        }
+        if(trueCount == keys.length) selectAll = false;
+        else if(trueCount == 0) selectAll = true;
+        for (let i = 0; i < keys.length; i++){
+            ops[keys[i]] = selectAll; 
+        }
+        alert(Object.values(ops))
+        setServs(ops)
     }
 
     return (
@@ -91,14 +119,22 @@ export default function NewLeadScreen() {
                         <text className='SubTitle'>Serviços</text>
                     </div>
                     <div className='MasterCheckBox'>
-                        <input style={{borderWidth:'1px', borderColor:'#000000', borderStyle:'solid'}} type='checkbox'></input>
+                        <input 
+                        style={{borderWidth:'1px', 
+                        borderColor:'#000000', 
+                        borderStyle:'solid'}} 
+                        type='checkbox'
+                        onClick={() =>ToggleAll()}/>
                     </div>
                     {TESTE()}
+                    <button onClick={() => alert(Object.values(servs))} />
                 </div>
             </body>
         </div>
     )
   }
+
+
 
 
 

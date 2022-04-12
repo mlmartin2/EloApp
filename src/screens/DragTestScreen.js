@@ -12,28 +12,31 @@ const reorder = (list, startIndex, endIndex) => {
 // ARRAY C DADOS (DESNECESSARIO)
 const Arr = [
     {
-        name: "North",
+        name: "Empresa 1",
         key: "12353",
-        color:"#000000"
+        color:"#000000",
+        drag: false
     },
     {
-        name: "South",
+        name: "",
         key: "23463",
-        color:"#ffffff"
+        color:"#ffffff",
+        drag: true,
     },
     {
-        name: "East",
+        name: "",
         key: "54643",
-        color:"#ffffff"
+        color:"#ffffff",
+        drag: true,
     },
 
 ]
 
 
+
 // MAIN
 const Projects = () => {
     const [project, setProject] = useState(Arr) // decl. estado p/ array anterior
-
     const onDragEnd = (result) => {
         if (!result.destination) return; // se nao há destino, retornar
         if (result.destination.index === result.source.index) return; // se indice do destino == indice da origem, retornar
@@ -50,23 +53,27 @@ const Projects = () => {
     return (
         <DragDropContext onDragEnd={onDragEnd}> 
             <Droppable direction='horizontal' droppableId="list">
-                {(provided) => (
+            {(provided) => (
                     <div
                         ref={provided.innerRef}
                         {...provided.droppableProps}
-                        style={{display:'flex', flexDirection:'row', border: "1px solid #ffffff", opacity: 0.5, borderRadius: "5px" }}
+                        style={{display:'flex', flex:3, flexDirection:'row', border: "1px solid #ffffff", opacity: 0.5, borderRadius: "5px" }}
                     >
-                        {project && project.map((item, index) =>
-                            <Draggable draggableId={item.key} key={item.key} index={index}>
+                        {project && 
+                        project.map((item, index) =>
+                            <Draggable isDragDisabled={item.drag} draggableId={item.key} key={item.key} index={index}>
                                 {(provided) => (
+                                    <div style={{flex:1}}>
                                     <div
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
+                                            
                                     >
-                                        <div style={{border: '1px black solid', width:'60px', alignSelf:'center'}}>
+                                        <div style={{position:'absolute',border: '1px black solid', width:'70px', height:'70px', alignSelf:'center'}}>
                                             <p style={{ color: item.color }}>{item.name}</p>
                                         </div>
+                                    </div>
                                     </div>
                                 )}
                             </Draggable>)}
