@@ -30,11 +30,9 @@ function App() {
         <Route path='/' element={<Layout/>}>
           <Route element={<Login />} exact path="/" />
           <Route element={<SignUser />} path="/signup" />
-          <Route element={<RequireAuth />}>
-            <Route element={<NewLeadScreen />} path="/newlead" />
-            <Route element={<Home />} exact path="/home" />
-            <Route element={<Homev2 />} path="/v2" />
-          </Route>
+          <Route element={<NewLeadScreen />} path="/newlead" />
+          <Route element={<Home />} exact path="/home" />
+          <Route element={<Homev2 />} path="/v2" />
           <Route path='*' element={<Navigate to={user ? '/home' : '/'} />} />
           <Route element={<Projects />} path="/testdrag" />
           <Route element={<DragDrop />} path="/dragdrop" />

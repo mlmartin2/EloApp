@@ -1,18 +1,25 @@
 import './styles/Login.css'
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import React, {useState} from 'react';
 import { find_Entry, get_Entry } from '../database/manager';
-import useAuth from '../hooks/useAuth';
 
 export default function Login()
 {
-  const {setAuth} = useAuth();
+  const [logged, setLogged] = useState(false)
   const [user, setUser] = useState('')
   const [password, setPassword] = useState()
 
-  const Submit = () =>
+  const LoginSubmit = () =>
   {
-    setAuth({user, password});
+    let userid = find_Entry('Users', 'name', user)
+    let userobj = get_Entry('Users', userid)
+    if( user == '') alert('Usuário não digitado')
+    else if ( password == '') alert('Senha não digitada')
+    else if(userobj == undefined) alert('Usuario nao cadastrado!')
+    else if(userobj.password != password) alert('Senha incorreta!')
+    else {setLogged(true)}
+    setUser('')
+    setPassword('')
   }
 
   return (
@@ -26,16 +33,19 @@ export default function Login()
             <text className='PageTitle'>Login de Usuário</text>
           </div>
           <div className='LoginContainer'>
-            <div className='LoginInputContainer'><input id='usr' onChange={(val) => setUser(val.target.value)} className='LoginInputItem' placeholder='Usuário' /></div>
-            <div className='LoginInputContainer'><input id='psw' onChange={(val) => setPassword(val.target.value)} className='LoginInputItem' placeholder='Senha' /></div>
+            <div className='LoginInputContainer'><input id='usr' value={user} onChange={(val) => setUser(val.target.value)} className='LoginInputItem' placeholder='Usuário' /></div>
+            <div className='LoginInputContainer'><input id='psw' value={password} onChange={(val) => setPassword(val.target.value)} className='LoginInputItem' placeholder='Senha' /></div>
             <div className='SignInButtonContainer'>
-              <button onClick={() => alert('a')}>Login</button>
+              {logged ? 
+              <Navigate to='/home' replace>
+              </Navigate> :
+                <button onClick={() => LoginSubmit()}>Login</button>}
             </div>
             <div className='SignUpButtonContainer'>
               <Link to='/signup'>
-                <button style={{color:'#ffffff', fontSize: '15px', }} className='ButtonDefault ButtonElo'>
-                  Cadastro
-                </button>
+              <button style={{ color: '#ffffff', fontSize: '15px', }} className='ButtonDefault ButtonElo'>
+                Cadastro
+              </button>
               </Link>
             </div>
           </div>

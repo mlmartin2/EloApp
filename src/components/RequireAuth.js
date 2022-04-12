@@ -1,14 +1,19 @@
-import { useLocation, Navigate, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, Navigate, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const RequireAuth = () =>
 {
     const {auth} = useAuth();
     const location = useLocation();
+    const navigate = useNavigate()
+    useEffect(() =>
+    {
+        if(auth?.user) {alert('Auth')}
+        else alert('Not auth')
+    }, [auth])
     return (
-        auth?.user
-        ? <Outlet />
-        : <Navigate to='/' state={{from: location}} replace/> 
+        navigate('/home')
     );
 }
 
