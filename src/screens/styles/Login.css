@@ -47,6 +47,14 @@
   display: list-item;
 }
 
+.PasswordInputItem
+{
+  outline-style: none;
+  text-align: center;
+  border-width: 0px;
+  border-bottom-width: 1px;
+}
+
 .LoginInputContainer {
   padding-top: 10px;
 

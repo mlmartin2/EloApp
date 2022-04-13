@@ -1,14 +1,8 @@
+import './styles/Homev2.css'
 import { Link } from 'react-router-dom'
-import './styles/Home.css'
-import { DragDropContext, Doppable, Draggable } from 'react-beautiful-dnd'
-import { find_Entry, get_Entry, get_TableObject, set_EntryData } from '../database/manager'
-import Projects from './DragTestScreen'
+import { get_TableObject, set_EntryData } from '../database/manager'
 import { useState } from 'react'
 
-const ItemTypes =
-{
-    LEAD:'lead'
-}
 
 export default function Home() {
 

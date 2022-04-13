@@ -10,8 +10,8 @@ export function signUp_User(username = '', password = '', passwordConfirm = '')
     const usersArray = localStorage.getItem('Users')
     const user = construct_User(username,  password);
     const valid = validate_User(user, usersArray, passwordConfirm)
-    if(valid == undefined) { add_User(user); alert('Cadastro feito com sucesso!')}
-    else alert(valid)
+    if(valid == undefined) { add_User(user); alert('Cadastro feito com sucesso!');}
+    else {alert(valid);}
 }
 
 export function signUp_UserObject(user = {}, passwordConfirm = '')

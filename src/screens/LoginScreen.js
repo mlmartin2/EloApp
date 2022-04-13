@@ -2,6 +2,7 @@ import './styles/Login.css'
 import {Link, Navigate} from 'react-router-dom';
 import React, {useState} from 'react';
 import { find_Entry, get_Entry } from '../database/manager';
+import auth from '../handlers/auth';
 
 export default function Login()
 {
@@ -21,6 +22,13 @@ export default function Login()
     setUser('')
     setPassword('')
   }
+  
+  const LogSubmit = () =>
+  {
+    setLogged(auth(user, password))
+    setUser('')
+    setPassword('')
+  }
 
   return (
     <div >
@@ -34,12 +42,12 @@ export default function Login()
           </div>
           <div className='LoginContainer'>
             <div className='LoginInputContainer'><input id='usr' value={user} onChange={(val) => setUser(val.target.value)} className='LoginInputItem' placeholder='Usuário' /></div>
-            <div className='LoginInputContainer'><input id='psw' value={password} onChange={(val) => setPassword(val.target.value)} className='LoginInputItem' placeholder='Senha' /></div>
+            <div className='LoginInputContainer'><input id='psw' className='PasswordInputItem' type='password' placeholder='Senha' /></div>
             <div className='SignInButtonContainer'>
               {logged ? 
               <Navigate to='/home' replace>
               </Navigate> :
-                <button onClick={() => LoginSubmit()}>Login</button>}
+                <button onClick={() => LogSubmit()}>Login</button>}
             </div>
             <div className='SignUpButtonContainer'>
               <Link to='/signup'>
@@ -64,4 +72,3 @@ function AuthError(index = -1)
     'Usuário não encontrado',
     'Senha Inválida']
 }
-

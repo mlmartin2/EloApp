@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { useDrag } from "react-dnd"
 
 // Componente p/ lead 'arrastável'
+// **em desenvolvimento
+
 export default function LEAD({id, state})
 {
     const[leadstate, setLeadstate] = useState(state)

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+// Projeto copiado p/ analisar react-beautiful-dnd
 
 // FUNC P LIDAR COM REORDER (DESNECESSARIO P MIM (OU N))
 const reorder = (list, startIndex, endIndex) => {

@@ -10,6 +10,14 @@ export default function SignUser()
     const [pass, setPass] = useState()
     const [passConfirm, setPassConfirm] = useState()
 
+    function handleSumbit()
+    {
+      signUp_User(user, pass, passConfirm)
+      setUser('')
+      setPass('')
+      setPassConfirm('')
+    }
+
   return (
     <div >
       <header className="App-header">
@@ -21,12 +29,12 @@ export default function SignUser()
             <text className='PageTitle'>Cadastro de Usuário</text>
           </div>
           <div className='LoginContainer'>
-            <div className='LoginInputContainer'><input onChange={(val) => setUser(val.target.value)} id='usr' className='LoginInputItem' placeholder='Novo Usuário *' /></div>
-            <div className='SignUpContainer'><input id='psw' onChange={(val) => setPass(val.target.value)} className='LoginInputItem' placeholder='Senha *' /></div>
-            <div className='LoginInputContainer'><input id='cpsw' onChange={(val) => setPassConfirm(val.target.value)} className='LoginInputItem' placeholder='Repetir Senha *' /></div>
+            <div className='LoginInputContainer'><input value={user} onChange={(val) => setUser(val.target.value)} id='usr' className='LoginInputItem' placeholder='Novo Usuário *' /></div>
+            <div className='SignUpContainer'><input type='password' id='psw' value={pass} onChange={(val) => setPass(val.target.value)} className='LoginInputItem' placeholder='Senha *' /></div>
+            <div className='LoginInputContainer'><input type='password' value={passConfirm} onChange={(val) => setPassConfirm(val.target.value)} className='LoginInputItem' placeholder='Repetir Senha *' /></div>
             <div style={{ paddingTop: '10px' }}><text style={{ fontSize: '14px' }}>Campos com * são obrigatórios</text></div>
             <div className='SignInButtonContainer'>
-              <button style={{ color: '#ffffff' }} onClick={() => signUp_User(user, pass, passConfirm)} className='ButtonDefault ButtonElo'>
+              <button style={{ color: '#ffffff' }} onClick={() => handleSumbit()} className='ButtonDefault ButtonElo'>
                 Cadastrar
               </button>
             </div>

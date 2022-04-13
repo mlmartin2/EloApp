@@ -1,8 +1,7 @@
+import './styles/NewLead.css'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import './styles/NewLead.css'
 import { opportunities } from '../database/models'
-import { construct_Lead } from '../database/constructors'
 import { signUp_Lead } from '../handlers/register'
 import { get_TableObject } from '../database/manager'
 
@@ -12,7 +11,6 @@ export default function NewLeadScreen() {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [servs, setServs] = useState(opportunities)
-    const [selectAll, setSelectAll] = useState(false)
 
     useEffect(() =>
     {
@@ -83,12 +81,12 @@ export default function NewLeadScreen() {
                     <img className="Logo" src={process.env.PUBLIC_URL + 'LogoEloFullUpdate.png'} />
                 </div>
                 <div className='SideButtonContainer'>
-                    <div className='WORKAROUND_CenterItem'>
-                        <Link className='SideBUttonContainer' to={'../home'}>
-                            <button className='SideButton ButtonGray'>LEADS</button>
-                        </Link>
-                    </div>
-                    <button className='SideButton'> NOVO LEAD</button>
+                    <Link to='../home'>
+                    <button className='SideButton ButtonGray'>LEADS</button>
+                    </Link>
+                    
+
+                    <button className='SideButton '> NOVO LEAD</button>
                     <Link to='../'>
                         <button className='LogOutButton'>
                             SAIR
@@ -136,6 +134,25 @@ export default function NewLeadScreen() {
 
 
 
+
+
+  //              <input type='checkbox' value={servs[0]} onChange={() => toggleServ(0)} />
+//   <div className='ServiceContainer'>
+//   <text>serviço 1</text>
+//   <input type='checkbox' value={servs[0]} onChange={() => toggleServ(0)} />
+// </div>
+// <div className='ServiceContainer'>
+//   <text>serviço 2</text>
+//   <input type='checkbox' value={servs[1]} onChange={() => toggleServ(1)} />
+// </div>
+// <div className='ServiceContainer'>
+//   <text>serviço 3</text>
+//   <input type='checkbox' value={servs[2]} onChange={() => toggleServ(2)} />
+// </div>
+// <div className='ServiceContainer'>
+//   <text>serviço 4</text>
+//   <input type='checkbox' value={servs[3]} onChange={() => toggleServ(3)} />
+// </div>
 
 
   //              <input type='checkbox' value={servs[0]} onChange={() => toggleServ(0)} />

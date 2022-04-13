@@ -14,7 +14,7 @@ export const model_User =
 
 export const model_Lead =
 {
-    _TYPE: '',
+    _TYPE: 'Lead',
     name: '',
     phone: '',
     email: '',
