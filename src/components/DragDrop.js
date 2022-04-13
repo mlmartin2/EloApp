@@ -2,45 +2,46 @@ import React, { useEffect } from "react";
 import LEAD from "./LEAD";
 import { useDrop } from "react-dnd";
 import { useState } from "react";
+import { isLabelWithInternallyDisabledControl } from "@testing-library/user-event/dist/utils";
 
-// Componente p/ zonas destino de itens arrastáveis
+const LeadList =
+[
+    {state: 0,
+    id: 0}
+]
 
 export default function DragDrop({width, lead, itemindex = -1}) 
 {
     const [slot, setSlot] = useState([])
+    const [index, setIndex] = useState(itemindex)
+    const [dropped, setDropped] = useState(false);
 
     useEffect(() =>
     {
-        // Inicialização do slot (inicial (indice: 0) sempre fornecido)
         setSlot(lead)
     }, [])
 
     const [{isOver}, drop] = useDrop(() =>
     ({
         accept: "LEAD",
-        // Descobrir como remover item da tabela após func. ser chamada
         drop: (item) => addLeadToSlot(item),
         collect:(monitor) => ({
             isOver: !!monitor.isOver(),
         })
     }))
-    
-    // Condicionais p/ mover leads ao longo dos slots
-    // 1 - Não pode mover para tras
-    // 2 - Não pode mover para o mesmo slot
-    // 3 - Não pode mover mais de uma posição por vez
     const addLeadToSlot = (lead) =>
     {
         let idx = lead.state + 1;
         alert(itemindex + ' ' + idx)
         if(itemindex == lead.state) alert('PROIBIDO: mesmo slot')
         else if(itemindex == lead.state + 2) alert('PROIBIDO: item pulado; não pode')
-        else if(itemindex < lead.state) alert('PROIBIDO: Lead não pode voltar pra trás')
+        else if(itemindex < lead.state) alert('PROIBIDO: Voltar p/ tras')
         else{
             alert('add to ' + itemindex + ' from ' + lead.state)
             const temp = <LEAD id={lead.id} state={idx} />
             setSlot(temp)
         }
+
     }
 
     return (
@@ -52,4 +53,16 @@ export default function DragDrop({width, lead, itemindex = -1})
             </div>
         </>
     )
+}
+
+export function DebugList() 
+{
+    return(
+        <div style={{ bottom: '50%', position: 'absolute' }}>
+        {LeadList.map((lead) => {
+            return <LEAD id={lead.id} state={lead.state} />
+        })}
+        </div>
+    )
+
 }
