@@ -1,9 +1,9 @@
 import DragDrop, { DebugList } from "../../components/DragDrop";
 import LEAD from "../../components/LEAD";
 // prototipo com react-dnd
-export default function DDTable()
+export default function DDTable({lead})
 {
-    const lead = <LEAD state={0} id={1234123}/>
+    const _lead = <LEAD state={0} id={1234123}/>
 
     return(
         <div>

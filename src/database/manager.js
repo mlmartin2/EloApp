@@ -77,14 +77,12 @@ export function get_Entry(_table = '',id = -1)
 // Modificar dados de uma entrada especifica ( por id )
 export function set_EntryData(_table = '', id = '', entryKey = '', value)
 {
-    alert(id)
     const table = get_TableObject(_table)
     let item = table[id];
     if(item == null || item == undefined)console.log('Id não existe na tabela');
     item[entryKey] = value;
     table[id] = item;
-    localStorage.setItem(id, JSON.stringify(table))
-    alert(get_Column('Leads', 'state'))
+    localStorage.setItem(_table, JSON.stringify(table))
 }
 
 // retorna uuid do registro ( se n existe : undefined)

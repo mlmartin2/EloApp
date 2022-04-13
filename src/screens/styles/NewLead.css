@@ -88,9 +88,6 @@
     color: #f9b233;
 }
 
-/* workaround p/ centralizar item na sidebar,
-por X motivos nada funciona em ReactJS
-ad´pwdpawkdawopkadkapowadkop */
 .WORKAROUND_CenterItem
 {
     align-self: center;

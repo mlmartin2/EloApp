@@ -1,4 +1,5 @@
 import './styles/NewLead.css'
+import './styles/Login.css'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { opportunities } from '../database/models'
@@ -11,12 +12,10 @@ export default function NewLeadScreen() {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [servs, setServs] = useState(opportunities)
+    const [leads, setLeads] = useState({})
+    const [checkboxes, setCheckboxes] = useState([false,false,false,false])
 
-    useEffect(() =>
-    {
-    }, [opportunities])
-
-    function TESTE()
+    function gen_CheckBoxes()
     {
         let servsarray = []
         let keys = Object.keys(opportunities)
@@ -25,28 +24,13 @@ export default function NewLeadScreen() {
             let serv = opportunities[keys[key]]
             servsarray.push(
             <div className='ServiceContainer'>
-                <input id={keys[key]} key={keys[key]} type='checkbox'   onChange={(e) => toggleServ(keys[key])} />
+                <input id={key} key={keys[key]} type='checkbox' value={checkboxes[key]} onChange={(e) => toggleServ(keys[key])} />
                 <text className='WORKAROUND_paddingLeft'>{keys[key]}</text>
 
             </div>
             )
         }
         return servsarray;
-    }
-
-    function DEBUG_Leads()
-    {
-        const table = get_TableObject('Leads')
-        let keys = Object.keys(table)
-        
-        alert(Object.values(table[keys[0]].opportunities)) 
-    }
-
-    const setServ = (id, bool) =>
-    {
-        var svs = servs;
-        svs[id] = bool;
-        setServs(svs)
     }
 
     const toggleServ = (servindex) =>
@@ -57,6 +41,7 @@ export default function NewLeadScreen() {
         setServs(svs)
     }
 
+    // Funcionando ( Falta update na screen)
     function ToggleAll() {
         let ops = servs;
         let keys = Object.keys(servs)
@@ -84,8 +69,6 @@ export default function NewLeadScreen() {
                     <Link to='../home'>
                     <button className='SideButton ButtonGray'>LEADS</button>
                     </Link>
-                    
-
                     <button className='SideButton '> NOVO LEAD</button>
                     <Link to='../'>
                         <button className='LogOutButton'>
@@ -124,51 +107,10 @@ export default function NewLeadScreen() {
                         type='checkbox'
                         onClick={() =>ToggleAll()}/>
                     </div>
-                    {TESTE()}
+                    {gen_CheckBoxes()}
                     <button onClick={() => alert(Object.values(servs))} />
                 </div>
             </body>
         </div>
     )
   }
-
-
-
-
-
-  //              <input type='checkbox' value={servs[0]} onChange={() => toggleServ(0)} />
-//   <div className='ServiceContainer'>
-//   <text>serviço 1</text>
-//   <input type='checkbox' value={servs[0]} onChange={() => toggleServ(0)} />
-// </div>
-// <div className='ServiceContainer'>
-//   <text>serviço 2</text>
-//   <input type='checkbox' value={servs[1]} onChange={() => toggleServ(1)} />
-// </div>
-// <div className='ServiceContainer'>
-//   <text>serviço 3</text>
-//   <input type='checkbox' value={servs[2]} onChange={() => toggleServ(2)} />
-// </div>
-// <div className='ServiceContainer'>
-//   <text>serviço 4</text>
-//   <input type='checkbox' value={servs[3]} onChange={() => toggleServ(3)} />
-// </div>
-
-
-  //              <input type='checkbox' value={servs[0]} onChange={() => toggleServ(0)} />
-//   <div className='ServiceContainer'>
-//   <text>serviço 1</text>
-//   <input type='checkbox' value={servs[0]} onChange={() => toggleServ(0)} />
-// </div>
-// <div className='ServiceContainer'>
-//   <text>serviço 2</text>
-//   <input type='checkbox' value={servs[1]} onChange={() => toggleServ(1)} />
-// </div>
-// <div className='ServiceContainer'>
-//   <text>serviço 3</text>
-//   <input type='checkbox' value={servs[2]} onChange={() => toggleServ(2)} />
-// </div>
-// <div className='ServiceContainer'>
-//   <text>serviço 4</text>
-//   <input type='checkbox' value={servs[3]} onChange={() => toggleServ(3)} />
-// </div>

@@ -1,12 +1,18 @@
 import './styles/Homev2.css'
 import { Link } from 'react-router-dom'
 import { get_TableObject, set_EntryData } from '../database/manager'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import DDTable from './TESTES/TESTE_DragDropTables'
 
 
 export default function Home() {
 
-    const [states, setStates] = useState([])
+    const [leads, setLeads] = useState()
+
+    useEffect(() =>
+    {
+        setLeads(get_TableObject('Leads'))
+    }, [])
 
     return (
         <div className='RootStyle'>
@@ -43,31 +49,74 @@ export default function Home() {
                             <text> Reunião Agendada</text>
                         </div>
                     </div>
-                    {mapLeads()}
+                    {MapLeads()}
                 </div>
             </body>
         </div>
     )
 }
 
-function mapLeads() {
+
+
+// teste de componente p/ rows de lead
+// teste com hooks p/ update qdo click
+function LeadRow({_lead})
+{
+    const [lead,setLead] = useState(_lead)
+    let columnItems = ['','','']
+    let newstate = lead.state + 1
+    for(let i = 0; i < 3; i++)
+    {
+        if(lead.state == i) columnItems.push(
+            <text onClick={ i == 2 ? '' : () => {
+                set_EntryData('Leads', lead.key, 'state', newstate);}}>{lead.name}</text>
+        )
+        else columnItems.push(<text></text>)
+    }
+
+    return(
+        <div className='LeadStatesContainer'>
+            <div className='LeadStateItem'>
+                {columnItems[0]}
+            </div>
+            <div className='LeadStateItem'>
+                {columnItems[1]}
+            </div>
+            <div className='LeadStateItem'>
+                {columnItems[2]}
+            </div>
+        </div>
+    )
+}
+
+function MapLeads() {
     const table = get_TableObject('Leads')
     const keys = Object.keys(table)
     let tableItems = []
     let columnNames = ['','','']
     let columnItems = []
     let sts = []
+    let leadobs = []
+        function MouseOver(event) {
+        event.target.style.background = '#D8D6D6';
+      }
+      function MouseOut(event){
+        event.target.style.background="";
+      }
+
     keys.map(key => {
         let item = table[key]
+        leadobs.push(item)
         let newState = 0;
         newState = item.state + 1
-        //alert(newState)
+        
         for(let i = 0; i < 5; i++)
         {
             if(item.state == i){
                 columnNames[i] = item.name
                 columnItems.push(
-                    <text onClick={() => {set_EntryData('Leads', key, 'state', newState)}}>{columnNames[i]}</text>
+                    <text onMouseOver={(event) => MouseOver(event)} onMouseOut={(event) => MouseOut(event)} 
+                    onClick={ i == 2 ? '' : () => set_EntryData('Leads', key, 'state', newState)} >{columnNames[i]}</text>
                 )
             }
             else{
@@ -91,6 +140,8 @@ function mapLeads() {
             </div>
         )
         columnItems = []
+
     })
+    
     return tableItems
 }

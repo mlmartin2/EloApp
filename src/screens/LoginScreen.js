@@ -9,19 +9,6 @@ export default function Login()
   const [logged, setLogged] = useState(false)
   const [user, setUser] = useState('')
   const [password, setPassword] = useState()
-
-  const LoginSubmit = () =>
-  {
-    let userid = find_Entry('Users', 'name', user)
-    let userobj = get_Entry('Users', userid)
-    if( user == '') alert('Usuário não digitado')
-    else if ( password == '') alert('Senha não digitada')
-    else if(userobj == undefined) alert('Usuario nao cadastrado!')
-    else if(userobj.password != password) alert('Senha incorreta!')
-    else {setLogged(true)}
-    setUser('')
-    setPassword('')
-  }
   
   const LogSubmit = () =>
   {
@@ -42,12 +29,12 @@ export default function Login()
           </div>
           <div className='LoginContainer'>
             <div className='LoginInputContainer'><input id='usr' value={user} onChange={(val) => setUser(val.target.value)} className='LoginInputItem' placeholder='Usuário' /></div>
-            <div className='LoginInputContainer'><input id='psw' className='PasswordInputItem' type='password' placeholder='Senha' /></div>
+            <div className='LoginInputContainer'><input id='psw' value={password} onChange={(val) => setPassword(val.target.value)} className='PasswordInputItem' type='password' placeholder='Senha' /></div>
             <div className='SignInButtonContainer'>
               {logged ? 
               <Navigate to='/home' replace>
               </Navigate> :
-                <button onClick={() => LogSubmit()}>Login</button>}
+                <button className='ButtonGray' style={{padding: '5px 10px 5px 10px'}} onClick={() => LogSubmit()}>Login</button>}
             </div>
             <div className='SignUpButtonContainer'>
               <Link to='/signup'>

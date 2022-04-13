@@ -16,6 +16,7 @@ export function validate_User(user = {}, userArray = {}, passwordConfirm = '')
 export function validate_Lead(lead = {}, leadArray = {})
 {
     let error
+    if(lead.name == '') {error = 'Nome não digitado!'; return error}
     let emailValidate = validate_Email(lead.email)
     let phoneValidate = validate_Phone(lead.phone)
     if(emailValidate != undefined ) error = emailValidate
@@ -56,7 +57,7 @@ function validate_Email(email = '')
 {
     let error
     let regularExpression = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
-    if(!regularExpression.test(email)) error = 'erro de email'
+    if(!regularExpression.test(email)) error = 'E-mail inválido!'
     return error
 }
 
@@ -64,6 +65,6 @@ function validate_Phone(phone = '')
 {
     let error
     let regularExpression = /^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/
-    if(!regularExpression.test(phone)) error = 'erro tel'
+    if(!regularExpression.test(phone)) error = 'Telefone inválido!'
     return error
 }
