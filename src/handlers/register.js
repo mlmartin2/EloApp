@@ -19,7 +19,7 @@ export function signUp_UserObject(user = {}, passwordConfirm = '')
     signUp_User(user.name, user.password, passwordConfirm)
 }
 
-export function signUp_Lead(name = '', phone = '', email = '', servs = {})
+export function signUp_Lead(name = '', phone = '', email = '', servs = [false,false,false,false])
 {
     const leadsArray = get_TableObject('Leads')
     const lead = construct_Lead(name, phone, email, servs);

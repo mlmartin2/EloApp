@@ -11,22 +11,24 @@ export default function NewLeadScreen() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [servs, setServs] = useState(opportunities)
-    const [leads, setLeads] = useState({})
     const [checkboxes, setCheckboxes] = useState([false,false,false,false])
+    const [checkall, setCheckall] = useState(false)
+
+    useEffect(() =>
+    {
+        alert(checkboxes)
+    }, [checkboxes])
 
     function gen_CheckBoxes()
     {
         let servsarray = []
         let keys = Object.keys(opportunities)
-        for(let key = 0; key < keys.length; key++)
+        for(let key = 0; key < checkboxes.length; key++)
         {
-            let serv = opportunities[keys[key]]
             servsarray.push(
             <div className='ServiceContainer'>
-                <input id={key} key={keys[key]} type='checkbox' value={checkboxes[key]} onChange={(e) => toggleServ(keys[key])} />
+                <input key={key} type='checkbox' checked={checkboxes[key]} onChange={(e) => toggleServ(key)} />
                 <text className='WORKAROUND_paddingLeft'>{keys[key]}</text>
-
             </div>
             )
         }
@@ -35,28 +37,25 @@ export default function NewLeadScreen() {
 
     const toggleServ = (servindex) =>
     {
-        var svs = opportunities;
-        if(svs[servindex] == true) svs[servindex] = false;
-        else svs[servindex] = true;
-        setServs(svs)
+        var svs = checkboxes;
+        svs[servindex] = !svs[servindex]
+        setCheckboxes(svs)
     }
 
-    // Funcionando ( Falta update na screen)
     function ToggleAll() {
-        let ops = servs;
-        let keys = Object.keys(servs)
+        let ops = checkboxes;
         let selectAll = false
         let trueCount = 0
-        for (let i = 0; i < keys.length; i++) {
-            if (servs[keys[i]] == true) {trueCount++; selectAll = true }
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i] == true) {trueCount++; selectAll = true }
         }
-        if(trueCount == keys.length) selectAll = false;
+        if(trueCount == checkboxes.length) selectAll = false;
         else if(trueCount == 0) selectAll = true;
-        for (let i = 0; i < keys.length; i++){
-            ops[keys[i]] = selectAll; 
+        for (let i = 0; i < checkboxes.length; i++){
+            ops[i] = selectAll; 
         }
-        alert(Object.values(ops))
-        setServs(ops)
+        setCheckboxes(ops)
+        setCheckall(selectAll)
     }
 
     return (
@@ -92,7 +91,7 @@ export default function NewLeadScreen() {
                         <input onChange={(val) => setPhone(val.currentTarget.value)} placeholder='Telefone'></input>
                     </div>
                     <div className='SignLeadButton'>
-                        <button onClick={(val) => signUp_Lead(name, phone, email, servs)}> Cadastrar </button>
+                        <button onClick={(val) => signUp_Lead(name, phone, email, checkboxes)}> Cadastrar </button>
                     </div>
                 </div>
                 <div className='FloatRight'>
@@ -105,10 +104,11 @@ export default function NewLeadScreen() {
                         borderColor:'#000000', 
                         borderStyle:'solid'}} 
                         type='checkbox'
-                        onClick={() =>ToggleAll()}/>
+                        onClick={() =>ToggleAll()}
+                        checked={checkall}/>
                     </div>
                     {gen_CheckBoxes()}
-                    <button onClick={() => alert(Object.values(servs))} />
+                    <button onClick={() => alert(checkboxes)} />
                 </div>
             </body>
         </div>
