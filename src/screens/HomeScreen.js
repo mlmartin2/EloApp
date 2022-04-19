@@ -29,8 +29,8 @@ export default function Home() {
         let columnNames = ['', '', '']
         let columnItems = []
 
-        function MouseOver(event) {
-            event.target.style.background = '#D8D6D6';
+        function MouseOver(event, color = '') {
+            event.target.style.background = color;
         }
         function MouseOut(event) {
             event.target.style.background = "";
@@ -45,33 +45,39 @@ export default function Home() {
                 if (item.state == i) {
                     columnNames[i] = item.name
                     columnItems.push(
-                        <text style={{cursor:'pointer'}} onMouseOver={(event) => MouseOver(event)} onMouseOut={(event) => MouseOut(event)}
-                            onClick={i == 2 ? '' : () => handleChangeState(key)} >{columnNames[i]}</text>
+                        <div className='LeadStateItem' style={{justifySelf:'center', alignSelf:'center'}} >
+                            <text style={{ cursor: 'pointer' }}
+                                onMouseOver={(event) => MouseOver(event, '#D8D6D6')}
+                                onMouseOut={(event) => MouseOut(event)}
+                                onClick={i == 2 ? '' : () => handleChangeState(key)} >
+                                {columnNames[i]}
+                            </text>
+                        </div>
                     )
                 }
-                else if ( i < item.state)
-                {
+                else if (i < item.state) {
                     columnItems.push(
-                        <img style={{width:25, height:25, display:'flex', alignSelf:'center', justifySelf:'center'}} src={process.env.PUBLIC_URL + 'check.png'} />
+                        <div className='LeadStateItem'
+                        onMouseOver={(e) => MouseOver(e, '#bfff75')}
+                        onMouseOut={(e) => MouseOut(e)}>
+                            <img style={{ width: 25, height: 25, display: 'flex', alignSelf: 'center', justifySelf: 'center' }}
+                                src={process.env.PUBLIC_URL + 'check.png'} />
+                        </div>
                     )
                 }
                 else {
                     columnItems.push(
-                        <text></text>
+                        <div className='LeadStateItem'>
+                            <text></text>
+                        </div>
                     )
                 }
             }
             tableItems.push(
-                <div className='LeadStatesContainer'>
-                    <div className='LeadStateItem'>
+                <div style={{alignContent:'center', justifyContent:'center', alignItems:'center', justifyItems:'center'}} className='LeadStatesContainer'>
                         {columnItems[0]}
-                    </div>
-                    <div className='LeadStateItem'>
                         {columnItems[1]}
-                    </div>
-                    <div className='LeadStateItem'>
                         {columnItems[2]}
-                    </div>
                 </div>
             )
             columnItems = []
