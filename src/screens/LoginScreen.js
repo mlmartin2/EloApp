@@ -1,18 +1,24 @@
 import './styles/Login.css'
 import {Link, Navigate} from 'react-router-dom';
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { find_Entry, get_Entry } from '../database/manager';
 import auth from '../handlers/auth';
+import { UserContext } from '../App';
 
 export default function Login()
 {
   const [logged, setLogged] = useState(false)
   const [user, setUser] = useState('')
   const [password, setPassword] = useState()
-  
+  const [userctx, setUserctx] = useContext(UserContext)
+
   const LogSubmit = () =>
   {
-    setLogged(auth(user, password))
+    if(auth(user, password))
+    {
+      setUserctx(user)
+      setLogged(true)
+    }
     setUser('')
     setPassword('')
   }

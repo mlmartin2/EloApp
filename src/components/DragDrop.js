@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import LEAD from "./LEAD";
 import { useDrop } from "react-dnd";
-import { useState } from "react";
-import { isLabelWithInternallyDisabledControl } from "@testing-library/user-event/dist/utils";
+import { useState } from "react"
 
 const LeadList =
 [

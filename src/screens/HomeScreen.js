@@ -4,7 +4,6 @@ import { get_TableObject, set_EntryData } from '../database/manager'
 import { useEffect, useState } from 'react'
 import DDTable from './TESTES/TESTE_DragDropTables'
 
-
 export default function Home() {
 
     const [leads, setLeads] = useState()
@@ -45,7 +44,7 @@ export default function Home() {
                 if (item.state == i) {
                     columnNames[i] = item.name
                     columnItems.push(
-                        <div className='LeadStateItem' style={{justifySelf:'center', alignSelf:'center'}} >
+                        <div className='LeadStateItem' style={{ justifySelf: 'center', alignSelf: 'center' }} >
                             <text style={{ cursor: 'pointer' }}
                                 onMouseOver={(event) => MouseOver(event, '#D8D6D6')}
                                 onMouseOut={(event) => MouseOut(event)}
@@ -58,8 +57,8 @@ export default function Home() {
                 else if (i < item.state) {
                     columnItems.push(
                         <div className='LeadStateItem'
-                        onMouseOver={(e) => MouseOver(e, '#bfff75')}
-                        onMouseOut={(e) => MouseOut(e)}>
+                            onMouseOver={(e) => MouseOver(e, '#bfff75')}
+                            onMouseOut={(e) => MouseOut(e)}>
                             <img style={{ width: 25, height: 25, display: 'flex', alignSelf: 'center', justifySelf: 'center' }}
                                 src={process.env.PUBLIC_URL + 'check.png'} />
                         </div>
@@ -96,7 +95,7 @@ export default function Home() {
                 <div className='SideButtonContainer'>
                     <button className='SideButton'>LEADS</button>
                     <Link to='../newlead'>
-                        <button className='SideButton ButtonGray'> NOVO LEAD</button>
+                        <button className='SideButton ButtonGray'> NOVO LEAD </button>
                     </Link>
                     <Link to='../'>
                         <button className='LogOutButton'>
