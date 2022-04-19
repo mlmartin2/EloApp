@@ -116,7 +116,6 @@ export default function NewLeadScreen() {
                         checked={checkall}/>
                     </div>
                     {gen_CheckBoxes(checkboxes)}
-                    <button onClick={() => alert(checkboxes)} />
                 </div>
             </body>
         </div>

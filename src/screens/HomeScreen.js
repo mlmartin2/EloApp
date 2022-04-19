@@ -14,6 +14,73 @@ export default function Home() {
         setLeads(get_TableObject('Leads'))
     }, [])
 
+    function handleChangeState(key) {
+        let updatedleads = {...leads}
+        updatedleads[key].state++;
+        let nst = updatedleads[key].state;
+        set_EntryData('Leads', key, 'state', nst )
+        setLeads(updatedleads)
+    }
+
+    function MapLeads() {
+        if(leads == undefined || leads == null) return;
+        const keys = Object.keys(leads)
+        let tableItems = []
+        let columnNames = ['', '', '']
+        let columnItems = []
+
+        function MouseOver(event) {
+            event.target.style.background = '#D8D6D6';
+        }
+        function MouseOut(event) {
+            event.target.style.background = "";
+        }
+
+        keys.map(key => {
+            let item = leads[key]
+            let newState = 0;
+            newState = item.state + 1
+
+            for (let i = 0; i < 3; i++) {
+                if (item.state == i) {
+                    columnNames[i] = item.name
+                    columnItems.push(
+                        <text style={{cursor:'pointer'}} onMouseOver={(event) => MouseOver(event)} onMouseOut={(event) => MouseOut(event)}
+                            onClick={i == 2 ? '' : () => handleChangeState(key)} >{columnNames[i]}</text>
+                    )
+                }
+                else if ( i < item.state)
+                {
+                    columnItems.push(
+                        <img style={{width:25, height:25, display:'flex', alignSelf:'center', justifySelf:'center'}} src={process.env.PUBLIC_URL + 'check.png'} />
+                    )
+                }
+                else {
+                    columnItems.push(
+                        <text></text>
+                    )
+                }
+            }
+            tableItems.push(
+                <div className='LeadStatesContainer'>
+                    <div className='LeadStateItem'>
+                        {columnItems[0]}
+                    </div>
+                    <div className='LeadStateItem'>
+                        {columnItems[1]}
+                    </div>
+                    <div className='LeadStateItem'>
+                        {columnItems[2]}
+                    </div>
+                </div>
+            )
+            columnItems = []
+
+        })
+
+        return tableItems
+    }
+
     return (
         <div className='RootStyle'>
             <head className='SideBar'>
@@ -58,90 +125,3 @@ export default function Home() {
 
 
 
-// teste de componente p/ rows de lead
-// teste com hooks p/ update qdo click
-function LeadRow({_lead})
-{
-    const [lead,setLead] = useState(_lead)
-    let columnItems = ['','','']
-    let newstate = lead.state + 1
-    for(let i = 0; i < 3; i++)
-    {
-        if(lead.state == i) columnItems.push(
-            <text onClick={ i == 2 ? '' : () => {
-                set_EntryData('Leads', lead.key, 'state', newstate);}}>{lead.name}</text>
-        )
-        else columnItems.push(<text></text>)
-    }
-
-    return(
-        <div className='LeadStatesContainer'>
-            <div className='LeadStateItem'>
-                {columnItems[0]}
-            </div>
-            <div className='LeadStateItem'>
-                {columnItems[1]}
-            </div>
-            <div className='LeadStateItem'>
-                {columnItems[2]}
-            </div>
-        </div>
-    )
-}
-
-function MapLeads() {
-    const table = get_TableObject('Leads')
-    const keys = Object.keys(table)
-    let tableItems = []
-    let columnNames = ['','','']
-    let columnItems = []
-    let sts = []
-    let leadobs = []
-        function MouseOver(event) {
-        event.target.style.background = '#D8D6D6';
-      }
-      function MouseOut(event){
-        event.target.style.background="";
-      }
-
-    keys.map(key => {
-        let item = table[key]
-        leadobs.push(item)
-        let newState = 0;
-        newState = item.state + 1
-        
-        for(let i = 0; i < 5; i++)
-        {
-            if(item.state == i){
-                columnNames[i] = item.name
-                columnItems.push(
-                    <text onMouseOver={(event) => MouseOver(event)} onMouseOut={(event) => MouseOut(event)} 
-                    onClick={ i == 2 ? '' : () => set_EntryData('Leads', key, 'state', newState)} >{columnNames[i]}</text>
-                )
-            }
-            else{
-                columnItems.push(
-                    <text></text>
-                )
-            }
-            sts.push(item.state)
-        }
-        tableItems.push(
-            <div className='LeadStatesContainer'>
-                <div className='LeadStateItem'>
-                    {columnItems[0]}
-                </div>
-                <div className='LeadStateItem'>
-                    {columnItems[1]}
-                </div>
-                <div className='LeadStateItem'>
-                    {columnItems[2]}
-                </div>
-            </div>
-        )
-        columnItems = []
-
-    })
-    
-    return tableItems
-}

@@ -20,7 +20,7 @@ export function construct_Lead(name = '', phone = '', email = '', servs = [false
     newLead.phone = phone;
     newLead.email = email;
     newLead.opportunities = mods.opportunities;
-    for(let i = 0; i < opkeys.length(); i++)
+    for(let i = 0; i < opkeys.length; i++)
     {
         newLead.opportunities[opkeys[i]] = servs[i]
     }
