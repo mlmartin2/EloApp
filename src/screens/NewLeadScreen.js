@@ -12,22 +12,30 @@ export default function NewLeadScreen() {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [checkboxes, setCheckboxes] = useState([false,false,false,false])
+    const [ops, setOps] = useState(opportunities)
     const [checkall, setCheckall] = useState(false)
 
-    useEffect(() =>
-    {
-        alert(checkboxes)
+    useEffect(() => {
+        let truecount = 0
+        for(let i = 0; i < checkboxes.length; i++) 
+        {
+            if(checkboxes[i] == true) truecount++;
+        }
+        if(truecount == checkboxes.length) setCheckall(true)
+        else setCheckall(false)
     }, [checkboxes])
 
-    function gen_CheckBoxes()
+        function gen_CheckBoxes(prevbox)
     {
         let servsarray = []
         let keys = Object.keys(opportunities)
+        let cboxes = [...checkboxes]
+        //alert('gen_CheckBoxes(): ' + checkboxes)
         for(let key = 0; key < checkboxes.length; key++)
         {
             servsarray.push(
             <div className='ServiceContainer'>
-                <input key={key} type='checkbox' checked={checkboxes[key]} onChange={(e) => toggleServ(key)} />
+                <input id={Math.random()} key={Math.random()} type='checkbox' checked={prevbox[key]} onChange={(e) => toggleServ(e, key)} />
                 <text className='WORKAROUND_paddingLeft'>{keys[key]}</text>
             </div>
             )
@@ -35,10 +43,10 @@ export default function NewLeadScreen() {
         return servsarray;
     }
 
-    const toggleServ = (servindex) =>
+    const toggleServ = (event, servindex) =>
     {
-        var svs = checkboxes;
-        svs[servindex] = !svs[servindex]
+        let svs = [...checkboxes]
+        svs[servindex] = !svs[servindex] 
         setCheckboxes(svs)
     }
 
@@ -54,8 +62,8 @@ export default function NewLeadScreen() {
         for (let i = 0; i < checkboxes.length; i++){
             ops[i] = selectAll; 
         }
-        setCheckboxes(ops)
         setCheckall(selectAll)
+        setCheckboxes(ops)
     }
 
     return (
@@ -104,13 +112,25 @@ export default function NewLeadScreen() {
                         borderColor:'#000000', 
                         borderStyle:'solid'}} 
                         type='checkbox'
-                        onClick={() =>ToggleAll()}
+                        onChange={() =>ToggleAll()}
                         checked={checkall}/>
                     </div>
-                    {gen_CheckBoxes()}
+                    {gen_CheckBoxes(checkboxes)}
                     <button onClick={() => alert(checkboxes)} />
                 </div>
             </body>
         </div>
     )
+  }
+
+  const CheckBox = ({keyname, changeHandle, isCheck}) =>
+  {
+      const [checked,setChecked] = useState(isCheck)
+
+      return(
+        <div className='ServiceContainer'>
+            <input type='checkbox' checked={checked} onChange={changeHandle} />
+            <text className='WORKAROUND_paddingLeft'>{keyname}</text>
+        </div>
+      )
   }
