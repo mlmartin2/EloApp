@@ -6,12 +6,20 @@ export function init_Database()
     localStorage.setItem('Leads', '{}')
 }
 
-export function post_Entry(dataSet_name, entry)
+export function post_Entry(dataset_name, entry)
 {
-    let uniqueID = uuidv4();
-    let dataSet = JSON.parse(localStorage.getItem(dataSet_name))
-    dataSet[uniqueID] = entry;
-    localStorage.setItem(dataSet_name, JSON.stringify(dataSet))
+    let dataset = get_Dataset(dataset_name)
+    if(dataset[entry.id] != undefined)
+    {
+        dataset[entry.id] = entry
+    }
+    else
+    {
+        let uniqueID = uuidv4();
+        entry.id = uniqueID
+        dataset[uniqueID] = entry;
+    }
+    localStorage.setItem(dataset_name, JSON.stringify(dataset))
 }
 
 export function get_Dataset(dataset_name = '', entrykeys)

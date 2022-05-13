@@ -1,3 +1,4 @@
+import {v4 as uuidv4} from 'uuid'
 
 export const leadStates =
 {
@@ -15,11 +16,13 @@ export const opportunities =
 }
 
 export const user = {
+    id : null,
     name : '',
     password :  '',
 }
 
 export const lead = {
+    id: null,
     name : '',
     phone : '',
     email : '',

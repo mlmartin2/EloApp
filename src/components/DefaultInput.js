@@ -1,6 +1,6 @@
 import '../styles/commons.css'
 
-export default function DefaultInput({secure = false, placeholder='', onChangeText, paddingTop=10 })
+export default function DefaultInput({secure = false, placeholder='', onChangeText, value, paddingTop=10 })
 {
     return (
         <>
@@ -8,6 +8,7 @@ export default function DefaultInput({secure = false, placeholder='', onChangeTe
         <input 
         style={{ textAlign: 'center'}} 
         className="Borders"
+        value = {value}
         type={secure?'password':'text'} 
         placeholder={placeholder}
         onChange={(e) => onChangeText(e.target.value)} />

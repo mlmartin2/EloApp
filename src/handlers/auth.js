@@ -3,7 +3,6 @@ import { get_Entry } from '../database/manager';
 // refatorar
 const authUser = (username = '', password = '') =>
 {
-    alert(username + ' ' + password)
     let error = ''
     if (username == '') error = 'Usuário não digitado'
     else if (password == '') error = 'Senha não digitada'

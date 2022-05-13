@@ -2,6 +2,7 @@ import { useState } from "react"
 import LeadCard from "./LeadCard"
 import LeadCardContainer from "./LeadCardContainer"
 import '../styles/styles.css'
+import { edit_Entry, post_Entry } from "../../database/manager"
 
 const BorderStylesFromIndex =
 {
@@ -23,6 +24,7 @@ const LeadRow = ({currentLead, className}) =>
             temp_lead.state = lead.state + 1
             setLead(temp_lead)
             setState(lead.state)
+            post_Entry('Leads', temp_lead)
             return true
         }
 

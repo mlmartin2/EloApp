@@ -1,6 +1,8 @@
 // Validação de dados de acordo com condições fornecidas
-
 import { get_Entry } from "../database/manager"
+
+const email_regexp = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
+const phone_regexp = /^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/
 
 export function validate_User(user = {}, userArray = {}, passwordConfirm = '')
 {
@@ -36,6 +38,39 @@ export function validate_Username(username = '')
     else return true
     alert(error)
     return false
+}
+
+export function validate_Leadname(leadname = '')
+{
+    let error = ''
+    if(leadname === '') error = 'Digitar nome para a Lead'
+    else if(leadname.length < 3) error = 'Nome deve conter mais de 3 caracteres'
+    else if(!!get_Entry('Leads', 'name', leadname)) error = 'Lead com mesmo nome já existe'
+    else return true
+    alert(error)
+    return false
+}
+
+export function validate_email(email = '')
+{
+    let error = ''
+    if(email == '') error = 'Digitar e-mail'
+    else if(!!get_Entry('Leads', 'email', email)) error = 'E-mail já cadastrado'
+    else if(!email_regexp.test(email)) error = 'E-mail inválido'
+    else return true
+    alert(error)
+    return false
+}
+
+export function validate_phone(phone = '')
+{
+    let error = ''
+    if(phone == '') error = 'Digitar telefone para a lead'
+    else if(!phone_regexp.test(phone)) error = 'Número de telefone inválido'
+    else if(!!get_Entry('Leads', 'phone', phone)) error = 'Lead com mesmo telefone já cadastrada'
+    else return true
+    alert(error)
+    return false  
 }
 
 // FAZER: iterar por char p/ enviar motivo do erro
