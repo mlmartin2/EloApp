@@ -1,5 +1,6 @@
 import { get_Entry } from '../database/manager';
 
+// refatorar
 const authUser = (username = '', password = '') =>
 {
     alert(username + ' ' + password)

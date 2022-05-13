@@ -29,7 +29,7 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <UserContext.Provider value={[user, setUser]}>
         <Routes>
-          {user ?
+          {!user ?
           <Route element={<Home />} exact path='/' />
           :
           <Route element={<Login/>} exact path='/'/>}

@@ -1,10 +1,12 @@
 import '../styles/commons.css'
 import React, {useContext, useEffect, useState} from 'react';
 import { UserContext } from '../App';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LogoHeader from '../components/LogoHeader';
 import DefaultInput from '../components/DefaultInput';
 import auth from '../handlers/auth';
+import LeadCard from '../components/dnd/LeadCard';
+import LeadCardContainer from '../components/dnd/LeadCardContainer';
 
 export default function Login()
 {

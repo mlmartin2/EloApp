@@ -8,8 +8,8 @@ import { post_Entry } from '../database/manager'
 export function signUp_User(username = '', password = '', passwordConfirm = '')
 {
     if(!validate_Username(username) || !validate_Password(password, passwordConfirm)) return false
-    const user = construct_User(username, password)
-    post_Entry('Users', user)
-    alert('cadastrado')
+    const new_user = construct_User(username, password) 
+    post_Entry('Users', new_user)
+    alert('Usuário cadastrado com sucesso!')
     return true
 }
