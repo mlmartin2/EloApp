@@ -25,19 +25,21 @@ function App() {
     post_Entry('Leads', lead2)
     post_Entry('Users', user)
   },[])
-  
+
   return (
     <DndProvider backend={HTML5Backend}>
       <UserContext.Provider value={[user, setUser]}>
         <Routes>
-          {!user ?
-          <>
+          {user ?
+            <>
               <Route element={<Home />} exact path='/' />
               <Route element={<SignUpLead />} exact path='/newlead' />
-          </>
-          :
-          <Route element={<Login/>} exact path='/'/>}
-          <Route element={<SignUp/>} exact path='/signup' />
+            </>
+            :
+            <>
+              <Route element={<Login />} exact path='/' />
+              <Route element={<SignUp />} exact path='/signup' />
+            </>}
         </Routes>
       </UserContext.Provider>
     </DndProvider>

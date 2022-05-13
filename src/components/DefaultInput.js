@@ -7,7 +7,7 @@ export default function DefaultInput({secure = false, placeholder='', onChangeTe
         <div style={{paddingTop:paddingTop}} />
         <input 
         style={{ textAlign: 'center'}} 
-        className="BorderLeft BorderRight BorderTop"
+        className="Borders"
         type={secure?'password':'text'} 
         placeholder={placeholder}
         onChange={(e) => onChangeText(e.target.value)} />
