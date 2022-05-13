@@ -1,11 +1,13 @@
 import { useDrop } from "react-dnd";
 import LeadCard, { ItemTypes } from "./LeadCard";
 import '../styles/styles.css'
+import { useEffect, useState } from "react";
 const LeadCardContainer = (props) =>
 {
+
     const[{isOver}, drop] = useDrop(() => ({
         accept:ItemTypes.LEADCARD,
-        drop: () => alert('drop'),
+        drop: () => props.onDrop(props.index) ,
         collect: monitor => ({
             isOver: !!monitor.isOver(),
         }),
@@ -14,13 +16,13 @@ const LeadCardContainer = (props) =>
     return (
         <div
             ref={drop}
-            className="Borders" 
+            className={props?.className} 
             style={{
-            minHeight:50,
-            minWidth:50,
-            borderWidth:1,
+            textAlign:'center',
+            minHeight:30,
+            minWidth:200,
             borderColor:'#000000',
-            backgroundColor: isOver? '#919191':'#ffffff'}}>
+            backgroundColor: isOver? '#DEDCDC':'#ffffff'}}>
         {props.children}
         </div>
     )

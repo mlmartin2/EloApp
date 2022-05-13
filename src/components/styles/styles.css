@@ -1,4 +1,20 @@
 .Borders {
+    border: solid black;
     border-width: 1px 1px 1px 1px;
-    border: solid black
+}
+
+.BorderlessRight {
+    border-right: 0px;
+}
+
+.BorderlessLeft {
+    border-left: 0px;
+}
+
+.BorderlessTop {
+    border-top: 0px;
+}
+
+.BorderlessBottom {
+    border-bottom: 0px;
 }

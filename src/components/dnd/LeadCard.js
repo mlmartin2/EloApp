@@ -6,7 +6,7 @@ export const ItemTypes =
     LEADCARD:'LeadCard'
 }
 
-const LeadCard = () =>
+const LeadCard = ({leadName}) =>
 {
     const [{isDragging}, drag] = useDrag(() => ({
         type: ItemTypes.LEADCARD,
@@ -21,7 +21,7 @@ const LeadCard = () =>
         style ={{
         textAlign:'center',
         cursor: 'move'}}>
-            {isDragging ? '' : 'LEAD'}
+            {isDragging ? '' : leadName}
         </div>
     )
 }
