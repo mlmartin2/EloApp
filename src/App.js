@@ -7,6 +7,7 @@ import Login from './screens/LoginScreen';
 import SignUp from './screens/SignUpScreen';
 import Home from './screens/protected/HomeScreen';
 import { construct_Lead, construct_User } from './database/constructors.js';
+import SignUpLead from './screens/protected/LeadScreen.js';
 
 export const UserContext = createContext({})
 
@@ -30,7 +31,10 @@ function App() {
       <UserContext.Provider value={[user, setUser]}>
         <Routes>
           {!user ?
-          <Route element={<Home />} exact path='/' />
+          <>
+              <Route element={<Home />} exact path='/' />
+              <Route element={<SignUpLead />} exact path='/newlead' />
+          </>
           :
           <Route element={<Login/>} exact path='/'/>}
           <Route element={<SignUp/>} exact path='/signup' />

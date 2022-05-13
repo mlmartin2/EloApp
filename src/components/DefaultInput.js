@@ -1,13 +1,17 @@
 import '../styles/commons.css'
 
-export default function DefaultInput({paddingTop = 10, secure = false, placeholder='', onChangeText })
+export default function DefaultInput({secure = false, placeholder='', onChangeText, paddingTop=10 })
 {
     return (
+        <>
+        <div style={{paddingTop:paddingTop}} />
         <input 
-        style={{ textAlign: 'center', paddingTop: paddingTop }} 
-        className='BottomBorder' 
+        style={{ textAlign: 'center'}} 
+        className="BorderLeft BorderRight BorderTop"
         type={secure?'password':'text'} 
         placeholder={placeholder}
         onChange={(e) => onChangeText(e.target.value)} />
+        </>
+
     )
 }

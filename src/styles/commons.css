@@ -1,11 +1,3 @@
-.BottomBorder {
-    border-width: 0px 0px 1px 0px;
-}
-
-.Borderless {
-    border-width: 0px 0px 0px 0px;
-}
-
 .Header {
     background-color: '#ffffff';
     text-align: center;
@@ -16,4 +8,45 @@
     justify-content: center;
     flex-direction: column;
     padding: 10px 40% 10px 40%
+}
+
+.Borderless {
+    border-width: 0px 0px 0px 0px;
+}
+
+.Borders {
+    border: solid black;
+    border-width: 1px 1px 1px 1px;
+}
+
+.BorderRight {
+    border-right: 1px;
+}
+
+.BorderLeft {
+    border-left: 1px;
+}
+
+.BorderTop {
+    border-top: 1px;
+}
+
+.BorderBottom {
+    border-bottom: 1px;
+}
+
+.BorderlessRight {
+    border-right: 0px;
+}
+
+.BorderlessLeft {
+    border-left: 0px;
+}
+
+.BorderlessTop {
+    border-top: 0px;
+}
+
+.BorderlessBottom {
+    border-bottom: 0px;
 }
