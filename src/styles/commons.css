@@ -1,0 +1,19 @@
+.BottomBorder {
+    border-width: 0px 0px 1px 0px;
+}
+
+.Borderless {
+    border-width: 0px 0px 0px 0px;
+}
+
+.Header {
+    background-color: '#ffffff';
+    text-align: center;
+}
+
+.LoginInputContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 40% 10px 40%
+}

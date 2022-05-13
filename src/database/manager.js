@@ -1,100 +1,112 @@
 import {v4 as uuidv4} from 'uuid'
 
-// Registro de entries no armazém local
-// registros feitos após validação (**manter validações fora**)
-
-// Funções add_*
-// Adicionar itens na tabela
-// Usar após validação; esse arquivo não contém nenhum meio de validação ( além de checar itens indefinidos )
-
-// Funções get_*
-// Usar com ids de objeto. Chamar função find_ p/ checar se objeto existe, e então usar id
-// com funções get
-
-// Funções find_*
-// checa existencia na tabela primeiro
-// retorna Id do objeto
-
-// Inicialização de keys das "tabelas" p/ storage local
 export function init_Database()
 {
     localStorage.setItem('Users', '{}')
     localStorage.setItem('Leads', '{}')
 }
 
-// Adiciona User na tablea 'Users'
-export function add_User(user = {})
+export function post_Entry(dataSet_name, entry)
 {
     let uniqueID = uuidv4();
-    let usersArray = JSON.parse(localStorage.getItem('Users'))
-    usersArray[uniqueID] = user;
-    localStorage.setItem('Users', JSON.stringify(usersArray))
-} 
-
-// Adiciona Lead na tabela 'Leads'
-export function add_Lead(lead = {})
-{
-    let uniqueID = uuidv4();
-    let leadsArray = JSON.parse(localStorage.getItem('Leads'))
-    leadsArray[uniqueID] = lead;
-    localStorage.setItem('Leads', JSON.stringify(leadsArray))
-    
+    let dataSet = JSON.parse(localStorage.getItem(dataSet_name))
+    dataSet[uniqueID] = entry;
+    localStorage.setItem(dataSet_name, JSON.stringify(dataSet))
 }
 
-// 'table' = Key da "tabela" | keys: 'Users', 'Leads'
-export function get_Column(_table = '', column = '')
+export function get_Dataset(dataset_name = '', entrykeys)
 {
-    const tableJSON = localStorage.getItem(_table)
-    if(tableJSON == null) {console.log('Tabela não existe @ dbhandler.js'); return}
-    const table = JSON.parse(tableJSON)
-    const rowKeys = Object.keys(table)
-    let rowData = []
-    for(let i = 0; i < rowKeys.length; i++)
+    const datasetJSON = localStorage.getItem(dataset_name)
+    if(datasetJSON == null) {console.log('Tabela ' + dataset_name + ' não existe @ dbhandler.js'); return null;}
+    const dataset = JSON.parse(datasetJSON)
+    return dataset
+}
+
+export function get_Entryset(dataset_name = '', entryset_name = '')
+{
+    const dataset = get_Dataset(dataset_name)
+    let entryset = []
+    let keys = Object.keys(dataset)
+    for(let i = 0; i < keys.length; i++)
     {
-        let item = table[rowKeys[i]][column]
-        rowData.push(item)
+        let key = keys[i]
+        entryset.push([key, dataset[key][entryset_name]])
     }
-    return rowData 
+    return entryset
 }
 
-// Pega tabela por nome e converte em Object
-export function get_TableObject(_table = '')
+function get_Entry_byID(dataset_name = '', id = '')
 {
-    const tableJSON = localStorage.getItem(_table)
-    if(tableJSON == null) {console.log('Tabela ' + _table + ' não existe @ dbhandler.js'); return null;}
-    return JSON.parse(tableJSON)
+    let dataset = get_Dataset(dataset_name)
+    if(dataset == null) alert('id ou dataset não existem')
+    return dataset[id]
 }
 
-// usar com id especifico
-// para procurar por propriedade, usar find_Entry 
-export function get_Entry(_table = '',id = -1)
+export function get_Entry(dataset_name = '', entryset_name = '', entry_value)
 {
-    const table = get_TableObject(_table)
-    if(table[id] == null || table[id] == undefined) console.log('Id não existe na tabela')
-    return table[id];
-}
-
-// Modificar dados de uma entrada especifica ( por id )
-export function set_EntryData(_table = '', id = '', entryKey = '', value)
-{
-    const table = get_TableObject(_table)
-    let item = table[id];
-    if(item == null || item == undefined)console.log('Id não existe na tabela');
-    item[entryKey] = value;
-    table[id] = item;
-    localStorage.setItem(_table, JSON.stringify(table))
-}
-
-// retorna uuid do registro ( se n existe : undefined)
-export function find_Entry(_table = '', column = '', registry = '')
-{
-    const table = get_TableObject(_table)
-    const rowKeys = Object.keys(table)
-    let id = undefined;
-    for(let i = 0; i < rowKeys.length; i++)
+    let dataset = get_Dataset(dataset_name)
+    let keys = Object.keys(dataset)
+    for(let i = 0; i < keys.length; i++)
     {
-        let reg = table[rowKeys[i]][column]
-        if(reg == registry) {id = rowKeys[i]; break;}
+        let key = keys[i]
+        if(dataset[key][entryset_name] == entry_value) return dataset[key]
     }
-    return id;
+    return null
 }
+
+// DEPRECATED :
+
+// export function get_DatasetColumn(dataset_name = '', column = '')
+// {
+//     const dataset = get_Dataset(dataset_name)
+//     if(dataset == null) {alert('Set de dados não existe'); return null}
+
+//     const rowKeys = Object.keys(dataset)
+//     let column_entries = []
+//     for(let rowkeys_index = 0; rowkeys_index < rowKeys.length; rowkeys_index++)
+//     {
+//         let item = dataset[rowKeys[rowkeys_index]][column]
+//         column_entries.push(item)
+//     }
+//     return column_entries
+// }
+
+// // usar com id especifico
+// // para procurar por propriedade, usar find_Entry 
+// export function find_DatasetEntry(dataset_name = '', column_name = '', entry = '')
+// {
+//     const dataset = get_TableObject(dataset_name)
+//     if(!dataset) {return}
+//     const keys = Object.keys(dataset)
+//     for(let key_index = 0; key_index < keys.length; key_index++)
+//     {
+
+//     }
+//     if(table[id] == null || table[id] == undefined) console.log('Id não existe na tabela')
+//     return table[id];
+// }
+
+// // Modificar dados de uma entrada especifica ( por id )
+// export function set_EntryData(_table = '', id = '', entryKey = '', value)
+// {
+//     const table = get_TableObject(_table)
+//     let item = table[id];
+//     if(item == null || item == undefined)console.log('Id não existe na tabela');
+//     item[entryKey] = value;
+//     table[id] = item;
+//     localStorage.setItem(_table, JSON.stringify(table))
+// }
+
+// // retorna uuid do registro ( se n existe : undefined)
+// export function find_Entry(_table = '', column = '', registry = '')
+// {
+//     const table = get_TableObject(_table)
+//     const rowKeys = Object.keys(table)
+//     let id = undefined;
+//     for(let i = 0; i < rowKeys.length; i++)
+//     {
+//         let reg = table[rowKeys[i]][column]
+//         if(reg == registry) {id = rowKeys[i]; break;}
+//     }
+//     return id;
+// }

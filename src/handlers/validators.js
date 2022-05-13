@@ -1,5 +1,7 @@
 // Validação de dados de acordo com condições fornecidas
 
+import { get_Entry } from "../database/manager"
+
 export function validate_User(user = {}, userArray = {}, passwordConfirm = '')
 {
     let error
@@ -25,32 +27,31 @@ export function validate_Lead(lead = {}, leadArray = {})
 }
 
 // Valida username do usuário
-function validate_Username(userName = '', usersjson = '')
+export function validate_Username(username = '')
 {
-    let error
-    const users = JSON.parse(usersjson);
-    if(userName.length < 4) return 'Usuário deve possuir no mínimo 4 caractéres'
-
-    const usersKey = Object.keys(users)
-    for(let i = 0; i < usersKey.length; i++)
-    {
-        if(users[usersKey[i]].name == userName) {error = 'Nome em uso por outro membro'; break}
-    }
-    return error
+    let error = null
+    if(username === '') error = 'Digitar nome do usuário'
+    else if(username.length < 4) error = 'Usuário deve possuir no mínimo 4 caractéres'
+    else if(!!get_Entry('Users', 'name', username)) error = 'Usuário já existe'
+    else return true
+    alert(error)
+    return false
 }
 
 // FAZER: iterar por char p/ enviar motivo do erro
 // ( senhas q n respeitam as condições )
-function validate_Password(password = '', passwordConfirm = '')
+export function validate_Password(password = '', passwordConfirm = '')
 {   
-    let error
+    let error = ''
     let regularExpression = /^(?=.*[0-9])(?=.*[- ?!@#$%^&*\/\\])(?=.*[A-Z])(?=.*[a-z])[a-zA-Z0-9- ?!@#$%^&*\/\\]{8,}$/
     if(password == '') error = 'Senha não digitada'
     else if(passwordConfirm == '') error =  'Confirmar senha'
     else if(password != passwordConfirm) {error = 'Senhas não coincidem'}
     else if(!regularExpression.test(password))
      {error = 'Senha deve ter no mínimo: uma letra maiúscula, uma minúscula, um número e um dígito especial';}
-    return error;
+    else return true
+    alert(error)
+    return false
 }
 
 function validate_Email(email = '')

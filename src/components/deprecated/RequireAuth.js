@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useLocation, Outlet, Navigate } from "react-router-dom";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 
 const RequireAuth = () =>
 {

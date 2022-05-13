@@ -1,67 +1,35 @@
-import './styles/Login.css'
-import {Link, Navigate} from 'react-router-dom';
+import '../styles/commons.css'
 import React, {useContext, useEffect, useState} from 'react';
-import { find_Entry, get_Entry } from '../database/manager';
-import auth from '../handlers/auth';
 import { UserContext } from '../App';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import LogoHeader from '../components/LogoHeader';
+import DefaultInput from '../components/DefaultInput';
+import auth from '../handlers/auth';
 
 export default function Login()
 {
-  const [logged, setLogged] = useState(false)
-  const [user, setUser] = useState('')
-  const [password, setPassword] = useState()
-  const [userctx, setUserctx] = useContext(UserContext)
-
-  const LogSubmit = () =>
-  {
-    if(auth(user, password))
-    {
-      setUserctx(user)
-      setLogged(true)
-    }
-    setUser('')
-    setPassword('')
-  }
+  const [user, setUser] = useContext(UserContext)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  let navigate = useNavigate()
 
   return (
-    <div >
-      <header className="App-header">
-        <img className="Logo" src={process.env.PUBLIC_URL + 'LogoElo.png'} />
-      </header>
-      <div className='BodyContainer' >
-        <body>
-          <div className='PageTitleContainer'>
-            <text className='PageTitle'>Login de Usuário</text>
-          </div>
-          <div className='LoginContainer'>
-            <div className='LoginInputContainer'><input id='usr' value={user} onChange={(val) => setUser(val.target.value)} className='LoginInputItem' placeholder='Usuário' /></div>
-            <div className='LoginInputContainer'><input id='psw' value={password} onChange={(val) => setPassword(val.target.value)} className='PasswordInputItem' type='password' placeholder='Senha' /></div>
-            <div className='SignInButtonContainer'>
-              {logged ? 
-              <Navigate to='/home' replace>
-              </Navigate> :
-                <button className='ButtonGray' style={{padding: '5px 10px 5px 10px'}} onClick={() => LogSubmit()}>Login</button>}
-            </div>
-            <div className='SignUpButtonContainer'>
-              <Link to='/signup'>
-              <button style={{ color: '#ffffff', fontSize: '15px', }} className='ButtonDefault ButtonElo'>
-                Cadastro
-              </button>
-              </Link>
-            </div>
-          </div>
-        </body>
-      </div>
-    </div>
+    <>
+      <LogoHeader />
+      <body>
+        <div style={{justifyContent:'center', textAlign:'center'}}>
+          <button disabled>Sign In</button>
+          <button onClick={() => navigate('../signup', {replace: true})}>Sign Up</button>
+        </div>
+        <div style={{paddingTop:25}} className='LoginInputContainer'>
+          <DefaultInput onChangeText={setUsername} placeholder='Nome'/>
+          <DefaultInput onChangeText={setPassword} placeholder='Senha' secure />
+          <div style={{paddingTop:25}} />
+          <button  onClick={() => setUser(auth(username, password))} style={{borderWidth:'1'}}>Login</button>
+        </div>
+      </body>
+    </>
   )
 }
 
 
-function AuthError(index = -1)
-{
-  const authError = [
-    'Senha não digitada',
-    'Nome do usuário não digitado',
-    'Usuário não encontrado',
-    'Senha Inválida']
-}

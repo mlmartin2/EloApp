@@ -14,7 +14,7 @@ export default function DragDrop({width, lead, itemindex = -1})
     const [slot, setSlot] = useState([])
     const [index, setIndex] = useState(itemindex)
     const [dropped, setDropped] = useState(false);
-
+    
     useEffect(() =>
     {
         setSlot(lead)
