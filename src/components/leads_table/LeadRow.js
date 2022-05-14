@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import LeadCard from "./dragdrop_components/LeadCard"
 import LeadCardContainer from "./dragdrop_components/LeadCardContainer"
 import '../styles/styles.css'
@@ -38,7 +38,8 @@ const LeadRow = ({currentLead, className}) =>
                 return (
                     <LeadCardContainer 
                     onDrop={onDrop}
-                    canDrop={canDrop} 
+                    canDrop={canDrop}
+                    type={lead?.name} 
                     index={index}
                     className={"Borders " + style_item + ' ' + className}>
                         {lead.state == index ? <LeadCard leadName={lead.name} /> : ''}

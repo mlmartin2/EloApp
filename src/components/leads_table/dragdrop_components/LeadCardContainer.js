@@ -4,8 +4,9 @@ import '../../styles/styles.css'
 
 const LeadCardContainer = (props) =>
 {
+
     const[{isOver}, drop] = useDrop(() => ({
-        accept:ItemTypes.LEADCARD,
+        accept:props.type,
         drop: () => props.onDrop(props.index),
         collect: monitor => ({
             isOver: !!monitor.isOver(),

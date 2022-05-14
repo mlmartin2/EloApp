@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useDrag } from "react-dnd"
 
 export const ItemTypes =
@@ -8,8 +8,9 @@ export const ItemTypes =
 
 const LeadCard = ({leadName}) =>
 {
+
     const [{isDragging}, dragRef] = useDrag(() => ({
-        type: ItemTypes.LEADCARD,
+        type: leadName,
         collect: monitor => ({
             isDragging: !!monitor.isDragging()
         }),
