@@ -21,9 +21,9 @@ export default function SidebarView(props) {
                         position:'absolute',
                         backgroundColor:'#171b1c',
                         borderWidth:1,
-                        borderColor:'#D10000',
+                        borderColor:'#FF0000',
                         borderStyle:'solid'}} onClick={() => setUser(null)}>
-                            <text style={{color:'#D10000', fontSize:20}}>
+                            <text style={{color:'#FF0000', fontSize:20}}>
                             LOGOUT
                             </text>
                         </button>

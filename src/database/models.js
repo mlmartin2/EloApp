@@ -1,12 +1,3 @@
-import {v4 as uuidv4} from 'uuid'
-
-export const leadStates =
-{
-    0: 'Cliente em Potencial', 
-    1: 'Dados Confirmados', 
-    2: 'Reunião Agendada'
-}
-
 export const opportunities = 
 {
     'RPA':false, 

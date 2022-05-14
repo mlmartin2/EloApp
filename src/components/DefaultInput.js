@@ -1,4 +1,4 @@
-import '../styles/commons.css'
+import './styles/commons.css'
 
 export default function DefaultInput({secure = false, placeholder='', onChangeText, value, paddingTop=10 })
 {

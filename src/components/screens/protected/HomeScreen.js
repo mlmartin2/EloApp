@@ -1,6 +1,6 @@
-import LeadsTable from "../../components/dnd/LeadsTable";
-import SidebarView from "../../components/SideBar";
-import { get_Dataset, get_Entry } from "../../database/manager";
+import LeadsTable from "../../leads_table/LeadsTable";
+import SidebarView from "../../SideBar";
+import { get_Dataset } from "../../../database/manager";
 import '../../styles/commons.css'
 
 export default function Home() {

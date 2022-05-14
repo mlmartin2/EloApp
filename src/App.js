@@ -1,13 +1,13 @@
 import React, { useEffect, useState, createContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { get_Dataset, get_Entry, get_Entryset, init_Database, post_Entry } from './database/manager.js';
+import { init_Database, post_Entry } from './database/manager.js'; // remover postentry
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import Login from './screens/LoginScreen';
-import SignUp from './screens/SignUpScreen';
-import Home from './screens/protected/HomeScreen';
-import { construct_Lead, construct_User } from './database/constructors.js';
-import SignUpLead from './screens/protected/LeadScreen.js';
+import { construct_User } from './database/constructors.js'; // remover 
+import Login from './components/screens/LoginScreen';
+import SignUp from './components/screens/SignUpScreen';
+import Home from './components/screens/protected/HomeScreen';
+import SignUpLead from './components/screens/protected/LeadScreen.js';
 
 export const UserContext = createContext({})
 

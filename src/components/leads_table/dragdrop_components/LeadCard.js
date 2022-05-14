@@ -8,7 +8,7 @@ export const ItemTypes =
 
 const LeadCard = ({leadName}) =>
 {
-    const [{isDragging}, drag] = useDrag(() => ({
+    const [{isDragging}, dragRef] = useDrag(() => ({
         type: ItemTypes.LEADCARD,
         collect: monitor => ({
             isDragging: !!monitor.isDragging()
@@ -17,7 +17,7 @@ const LeadCard = ({leadName}) =>
 
     return (
         <div
-        ref={drag}
+        ref={dragRef}
         style ={{
         textAlign:'center',
         cursor: 'move'}}>
