@@ -76,7 +76,8 @@ export default function SignUpLead() {
                         Novo Lead
                     </text>
                 </div>
-                <div style={{ display: 'flex', flex: 3, flexDirection: 'row' }}>
+                <div style={{ display: 'flex', flex: 4, flexDirection: 'row' }}>
+                <div style={{ display: 'flex', flex: 1 }}/>
                     <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
                         <DefaultInput value={name} placeholder="Nome" onChangeText={setName} />
                         <DefaultInput value={phone} placeholder="Telefone" onChangeText={setPhone} />
@@ -87,8 +88,7 @@ export default function SignUpLead() {
                     <div style={{ display: 'flex', flex: 1, flexDirection: 'column', paddingLeft: 25 }}>
                         <OpportunityCheckboxes useHook={[checklist, setChecklist]} />
                     </div>
-                    <div style={{ display: 'flex', flex: 2 }}>
-                    </div>
+                    <div style={{ display: 'flex', flex: 1 }}/>
                 </div>
             </div>
         </SidebarView>

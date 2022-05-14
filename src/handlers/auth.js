@@ -10,6 +10,7 @@ const authUser = (username = '', password = '') =>
     if(user == null) error = 'Usuário não cadastrado'
     else if(user.password != password) error = 'senha inválida'
     else {return true}
+    alert(error)
     return false;
 }
 

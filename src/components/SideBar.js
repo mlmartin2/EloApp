@@ -1,6 +1,9 @@
+import { useContext } from "react"
+import { UserContext } from "../App"
 import SidebarButton from "./SidebarButton"
 
 export default function SidebarView(props) {
+    const [user,setUser] = useContext(UserContext) 
     return (
         <>
             <div style={{ display: 'flex', flexDirection: 'row', flex: 5 }}>
@@ -10,6 +13,21 @@ export default function SidebarView(props) {
                         <div style={{ paddingTop: 20 }} />
                         <SidebarButton selected={props.screen == '/'? true : false} className='Border BorderlessTop BorderlessLeft BorderlessRight' text='Leads' navigateTo={'/'} />
                         <SidebarButton selected={props.screen == 'newlead'? true : false} className='Borderless' text='Cadastrar Lead' navigateTo={'/newlead'}/>
+                        <div style={{display:'flex',justifyContent:'center'}}>
+                        <button 
+                        style=
+                        {{display:'flex', 
+                        bottom:50, 
+                        position:'absolute',
+                        backgroundColor:'#171b1c',
+                        borderWidth:1,
+                        borderColor:'#D10000',
+                        borderStyle:'solid'}} onClick={() => setUser(null)}>
+                            <text style={{color:'#D10000', fontSize:20}}>
+                            LOGOUT
+                            </text>
+                        </button>
+                        </div>
                         <div style={{ paddingTop: 5 }} />
                     </div>
                 </div>

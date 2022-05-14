@@ -15,6 +15,12 @@ export default function Login()
   const [password, setPassword] = useState('')
   let navigate = useNavigate()
 
+  function reset_states()
+  {
+    setUsername('')
+    setPassword('')
+  }
+
   return (
     <>
       <LogoHeader />
@@ -24,10 +30,10 @@ export default function Login()
           <button onClick={() => navigate('../signup', {replace: true})}>Sign Up</button>
         </div>
         <div style={{paddingTop:25}} className='LoginInputContainer'>
-          <DefaultInput onChangeText={setUsername} placeholder='Nome'/>
-          <DefaultInput onChangeText={setPassword} placeholder='Senha' secure />
+          <DefaultInput value={username} onChangeText={setUsername} placeholder='Nome'/>
+          <DefaultInput value={password} onChangeText={setPassword} placeholder='Senha' secure />
           <div style={{paddingTop:25}} />
-          <button  onClick={() => setUser(auth(username, password))} style={{borderWidth:'1'}}>Login</button>
+          <button onClick={() => {reset_states(); setUser(auth(username, password))}} style={{borderWidth:'1'}}>Login</button>
         </div>
       </body>
     </>

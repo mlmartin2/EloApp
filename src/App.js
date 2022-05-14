@@ -18,12 +18,8 @@ function App() {
   useEffect(() =>
   {
     init_Database()
-    let lead = construct_Lead('aabc', '12345', 'a@b.com')
-    let lead2 = construct_Lead('lead2', '4123', 'lead2@gmail.com')
-    let user = construct_User('Martin', '1234')
-    post_Entry('Leads', lead)
-    post_Entry('Leads', lead2)
-    post_Entry('Users', user)
+    let admin_user = construct_User('admin', 'admin')
+    post_Entry('Users', admin_user)
   },[])
 
   return (
