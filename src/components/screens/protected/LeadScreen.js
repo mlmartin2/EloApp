@@ -3,6 +3,7 @@ import DefaultInput from "../../DefaultInput";
 import SidebarView from "../../SideBar";
 import { signUp_Lead } from "../../../handlers/register";
 import CustomChecklist from "../../CustomChecklist";
+import PhoneInput from "../../PhoneInput";
 
 const checkAllFalse = [false,false,false,false]
 
@@ -11,7 +12,6 @@ export default function SignUpLead() {
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [checklist, setChecklist] = useState(checkAllFalse)
-
     const resetStates = () =>
     {
         setName('')

@@ -6,7 +6,7 @@ export const ItemTypes =
     LEADCARD:'LeadCard'
 }
 
-const LeadCard = ({leadName}) =>
+const LeadCard = ({leadName, onClick}) =>
 {
 
     const [{isDragging}, dragRef] = useDrag(() => ({
@@ -18,6 +18,7 @@ const LeadCard = ({leadName}) =>
 
     return (
         <div
+        onClick={onClick}
         ref={dragRef}
         style ={{
         textAlign:'center',

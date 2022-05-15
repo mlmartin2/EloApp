@@ -7,7 +7,7 @@ import { post_Entry } from "../../database/manager"
 const BorderStylesFromIndex = // mover p consts
 ['BorderlessLeft', 'BorderlessLeft BorderlessRight', 'BorderlessRight']
 
-const LeadRow = ({currentLead, className}) =>
+const LeadRow = ({currentLead, className, setLeadCard}) =>
 {
     const [lead, setLead] = useState(currentLead)
     const [leadState,setLeadState] = useState(currentLead.state)
@@ -42,7 +42,7 @@ const LeadRow = ({currentLead, className}) =>
                     type={lead?.name} 
                     index={index}
                     className={"Borders " + style_item + ' ' + className}>
-                        {lead.state == index ? <LeadCard leadName={lead.name} /> : ''}
+                        {lead.state == index ? <LeadCard onClick={() => setLeadCard(lead.id)} leadName={lead.name} /> : ''}
                     </LeadCardContainer>                    
                 )
             })}

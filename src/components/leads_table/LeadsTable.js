@@ -2,7 +2,7 @@ import { get_Dataset } from "../../database/manager";
 import LeadRow from "./LeadRow";
 import TableHeader from "./TableHeader";
 
-export default function LeadsTable()
+export default function LeadsTable({setSelectedLead})
 {
     const leads = get_Dataset('Leads', '*')
 
@@ -10,7 +10,7 @@ export default function LeadsTable()
         <div>
             <TableHeader />
             {Object.keys(leads).map((key, index) => {
-            return (<LeadRow classname={''} currentLead={leads[key]} />)})}
+            return (<LeadRow setLeadCard={setSelectedLead} classname={''} currentLead={leads[key]} />)})}
         </div>
     )
 }
